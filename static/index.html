@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NyN</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/logo.png">
+</head>
+<body>
+    <header>
+    <img id="img-header" src="/logo.png" alt="Logo de NyN" width="100">
+    <h1>NyN</h1>
+    </header>
+    <p>NyN es una empresa destinada al servicio de software para la comunidad de Tandil.</p>
+    <p>La plataforma permite realizar reportes de problemas en la
+        vía pública como baches, basura acumulada, luminarias apagadas,
+        veredas rotas y otras situaciones que afectan la ciudad.</p>
+    <p>Los usuarios pueden:</p>
+        <ul>
+            <li>Crear reportes (Nombre, descripcion, direccion, foto, categoria del problema).</li>
+            <li>Ver otros reportes y apoyarlos para que suba su prioridad</li>
+            <li>Los administradores pueden modificar el estado de las solicitudes (Pendiente, en proceso, resuelto, denegado)</li>
+            <li>El creador de la solicitud o administradores pueden eliminar reportes incorrectos, falsos o spam</li>
+        </ul>
+<form action="/opinion" method="POST">
+  <fieldset>
+    <legend>Dejanos tu opinión</legend>
+
+    <label for="name">Nombre:</label><br>
+    <input type="text" id="name" name="name" required>
+
+    <p>¿Te gustó la aplicación?</p>
+
+    <input type="radio" id="opcionSi" name="opinion" value="Sí" checked>
+    <label for="opcionSi">Sí</label>
+
+    <input type="radio" id="opcionNo" name="opinion" value="No">
+    <label for="opcionNo">No</label>
+
+    <br><br>
+    <button type="submit">Enviar</button>
+  </fieldset>
+</form>
+</body>
+</html>
