@@ -3,44 +3,594 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NyN</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="icon" type="image/x-icon" href="/css/logo.png">
+    <title>NyN Software & Tech - Soluciones Digitales</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #0b132b;
+            color: #e0fbfc;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- BARRA SUPERIOR Y LOGO --- */
+        .navbar {
+            background-color: #1c2541;
+            border-bottom: 2px solid #00b4d8;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #e0fbfc;
+        }
+        .logo-img {
+            height: 40px;
+            width: auto;
+            border-radius: 6px;
+        }
+        .logo-badge {
+            background-color: #00b4d8;
+            color: #0b132b;
+            font-weight: 900;
+            font-size: 1.3rem;
+            padding: 5px 10px;
+            border-radius: 6px;
+            letter-spacing: 1px;
+        }
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .logo-text span {
+            color: #4ea8de;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin: 0 auto; /* Centra los enlaces en el medio */
+        }
+        .nav-links a {
+            color: #b0c4de;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #00b4d8;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 50px 20px 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            color: #00b4d8;
+            font-size: 2.4rem;
+            margin-bottom: 12px;
+        }
+        .hero p {
+            color: #b0c4de;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .quick-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .btn-outline {
+            background-color: #1c2541;
+            color: #e0fbfc;
+            border: 1px solid #00b4d8;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .btn-outline:hover {
+            background-color: #00b4d8;
+            color: #0b132b;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .main-wrapper {
+            width: 100%;
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        /* --- SECCIÓN DE SOLUCIONES --- */
+        .section-title {
+            color: #00b4d8;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            border-left: 4px solid #00b4d8;
+            padding-left: 10px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .service-card {
+            background-color: #1c2541;
+            border: 1px solid #28385e;
+            border-radius: 10px;
+            padding: 25px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .service-card:hover {
+            border-color: #00b4d8;
+            transform: translateY(-3px);
+        }
+        .service-card h3 {
+            color: #e0fbfc;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        .service-card p {
+            color: #b0c4de;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* --- FORMULARIOS --- */
+        .forms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background-color: #1c2541;
+            border: 1px solid #28385e;
+            border-top: 4px solid #00b4d8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card h2 {
+            color: #00b4d8;
+            margin-bottom: 6px;
+            font-size: 1.4rem;
+        }
+        .card p.subtitle {
+            color: #b0c4de;
+            font-size: 0.9rem;
+            margin-bottom: 18px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #e0fbfc;
+        }
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            background-color: #0b132b;
+            border: 1px solid #28385e;
+            border-radius: 6px;
+            color: #e0fbfc;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #00b4d8;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 85px;
+        }
+        .radio-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: #0b132b;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #28385e;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .radio-option input[type="radio"] {
+            accent-color: #00b4d8;
+            cursor: pointer;
+        }
+        .btn-submit {
+            width: 100%;
+            background-color: #00b4d8;
+            color: #0b132b;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.2s;
+            margin-top: 8px;
+        }
+        .btn-submit:hover {
+            background-color: #4ea8de;
+        }
+
+        /* --- PREGUNTAS FRECUENTES (FAQ) --- */
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        details {
+            background-color: #1c2541;
+            border: 1px solid #28385e;
+            border-radius: 8px;
+            padding: 15px 18px;
+            cursor: pointer;
+        }
+        details[open] {
+            border-color: #00b4d8;
+        }
+        summary {
+            font-weight: bold;
+            color: #e0fbfc;
+            font-size: 1rem;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary::after {
+            content: "+";
+            color: #00b4d8;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        details[open] summary::after {
+            content: "−";
+        }
+        details p {
+            margin-top: 10px;
+            color: #b0c4de;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        /* --- FOOTER Y BOTÓN DE CONTACTO INFERIOR --- */
+        footer {
+            margin-top: auto;
+            background-color: #1c2541;
+            border-top: 1px solid #28385e;
+            text-align: center;
+            padding: 30px 20px;
+            color: #b0c4de;
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .btn-contacto-footer {
+            background-color: #00b4d8;
+            color: #0b132b;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .btn-contacto-footer:hover {
+            background-color: #4ea8de;
+            transform: translateY(-1px);
+        }
+
+        /* --- MODAL DE CONTACTO --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 19, 43, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal {
+            background-color: #1c2541;
+            border: 2px solid #00b4d8;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 420px;
+            width: 100%;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #b0c4de;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+        .close-modal:hover {
+            color: #00b4d8;
+        }
+        .contact-info-list {
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            color: #b0c4de;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
-    <header>
-    <img id="img-header" src="/css/logo.png" alt="Logo de NyN" width="100">
-    <h1>NyN</h1>
-    </header>
-    <p>NyN es una empresa destinada al servicio de software para la comunidad de Tandil.</p>
-    <p>La plataforma permite realizar reportes de problemas en la
-        vía pública como baches, basura acumulada, luminarias apagadas,
-        veredas rotas y otras situaciones que afectan la ciudad.</p>
-    <p>Los usuarios pueden:</p>
-        <ul>
-            <li>Crear reportes (Nombre, descripcion, direccion, foto, categoria del problema).</li>
-            <li>Ver otros reportes y apoyarlos para que suba su prioridad</li>
-            <li>Los administradores pueden modificar el estado de las solicitudes (Pendiente, en proceso, resuelto, denegado)</li>
-            <li>El creador de la solicitud o administradores pueden eliminar reportes incorrectos, falsos o spam</li>
-        </ul>
-<form action="/opinion" method="POST">
-  <fieldset>
-    <legend>Dejanos tu opinión</legend>
 
-    <label for="name">Nombre:</label><br>
-    <input type="text" id="name" name="name" required>
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="navbar">
+        <a href="/" class="logo-container">
+            <img src="/img/logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+            <div class="logo-badge">NyN</div>
+            <div class="logo-text">Software <span>Tech</span></div>
+        </a>
+        <div class="nav-links">
+            <a href="#servicios">Soluciones</a>
+            <a href="#formularios">Cotizar</a>
+            <a href="#faq">FAQ</a>
+        </div>
+    </nav>
 
-    <p>¿Te gustó la aplicación?</p>
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Soluciones de Software para Empresas</h1>
+        <p>Desarrollo web a medida e implementaciones tecnológicas clave para escalar tu negocio de forma ágil.</p>
+        <div class="quick-actions">
+            <a href="#form-reporte" class="btn-outline">Solicitar Proyecto</a>
+            <a href="#servicios" class="btn-outline">Ver Servicios</a>
+        </div>
+    </section>
 
-    <input type="radio" id="opcionSi" name="opinion" value="Sí" checked>
-    <label for="opcionSi">Sí</label>
+    <div class="main-wrapper">
 
-    <input type="radio" id="opcionNo" name="opinion" value="No">
-    <label for="opcionNo">No</label>
+        <!-- SECCIÓN DE SOLUCIONES -->
+        <section id="servicios">
+            <h2 class="section-title">Soluciones y Mejoras Tecnológicas</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Desarrollo Web & E-commerce</h3>
+                    <p>Sitios web corporativos rápidos, optimizados para conversión y adaptados a tus objetivos comerciales.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Software a Medida</h3>
+                    <p>Sistemas de gestión internos y aplicaciones escalables diseñadas para optimizar el flujo de trabajo.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Transformación Digital</h3>
+                    <p>Consultoría e implementaciones tecnológicas estratégicas para empresas emergentes.</p>
+                </div>
+            </div>
+        </section>
 
-    <br><br>
-    <button type="submit">Enviar</button>
-  </fieldset>
-</form>
+        <!-- FORMULARIOS -->
+        <section id="formularios" class="forms-grid">
+            <div class="card" id="form-reporte">
+                <form action="/reporte" method="POST">
+                    <h2>Cotizar Proyecto</h2>
+                    <p class="subtitle">Completá los datos para evaluar los requerimientos de tu empresa.</p>
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre y Apellido</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej. Carlos Mendoza" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoria">Solución Requerida</label>
+                        <select id="categoria" name="categoria" required>
+                            <option value="" disabled selected>Seleccioná una opción...</option>
+                            <option value="Desarrollo Web">Desarrollo Web / Landing Page</option>
+                            <option value="Software a Medida">Software a Medida</option>
+                            <option value="E-commerce">Tienda Online</option>
+                            <option value="Consultoria">Consultoría Tecnológica</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Sitio Web / Empresa</label>
+                        <input type="text" id="direccion" name="direccion" placeholder="Ej. Empresa S.A.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descripcion">Descripción del requerimiento</label>
+                        <textarea id="descripcion" name="descripcion" placeholder="Detallá el objetivo principal..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Enviar Solicitud</button>
+                </form>
+            </div>
+
+            <div class="card" id="form-opinion">
+                <form action="/opinion" method="POST">
+                    <div>
+                        <h2>Reseña de Clientes</h2>
+                        <p class="subtitle">Califiqué la calidad de nuestros servicios.</p>
+
+                        <div class="form-group">
+                            <label for="name">Tu Nombre / Empresa</label>
+                            <input type="text" id="name" name="name" placeholder="Ej. Sofía Benítez" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>¿Cómo calificás nuestras soluciones?</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="opinion" value="sí" required>
+                                    Excelente
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="opinion" value="más o menos">
+                                    Muy buena
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="opinion" value="no">
+                                    A mejorar
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Enviar Reseña</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <div class="faq-container">
+                <details>
+                    <summary>¿Cuánto demora el desarrollo de una web?</summary>
+                    <p>El tiempo estimado se encuentra entre 2 y 4 semanas según los requerimientos del proyecto.</p>
+                </details>
+                <details>
+                    <summary>¿Trabajan con empresas emergentes?</summary>
+                    <p>Sí, ofrecemos soluciones modulares e implementaciones por etapas para adaptarnos a las necesidades iniciales.</p>
+                </details>
+                <details>
+                    <summary>¿Ofrecen soporte post-lanzamiento?</summary>
+                    <p>Sí, contamos con planes de mantenimiento y soporte técnico continuo.</p>
+                </details>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- MODAL DE CONTACTO -->
+    <div class="modal-overlay" id="modalContacto">
+        <div class="modal">
+            <button class="close-modal" onclick="cerrarModal()">&times;</button>
+            <h2 style="color: #00b4d8; margin-bottom: 8px;">Contacto Directo</h2>
+            <p style="color: #b0c4de; font-size: 0.9rem;">Hablemos sobre tu próximo proyecto tecnológico.</p>
+
+            <div class="contact-info-list">
+                <div>Email: madarietasanti@gmail.com</div>
+                <div>Teléfono / WhatsApp: 2494371164</div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #28385e; margin: 15px 0;">
+
+            <form onsubmit="enviarMensajeContacto(event)">
+                <div class="form-group">
+                    <label for="contacto-email">Correo electrónico</label>
+                    <input type="email" id="contacto-email" placeholder="correo@empresa.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="contacto-msj">Mensaje</label>
+                    <textarea id="contacto-msj" placeholder="Escribí tu consulta..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit" id="btnEnviarContacto">Enviar Mensaje</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER CON BOTÓN DE CONTACTO ABAJO DEL TODO -->
+    <footer>
+        <button class="btn-contacto-footer" onclick="abrirModal()">Contáctanos</button>
+        <p>&copy; 2026 NyN Software Tech — Soluciones digitales para empresas.</p>
+    </footer>
+
+    <script>
+        function abrirModal() {
+            document.getElementById('modalContacto').classList.add('active');
+        }
+
+        function cerrarModal() {
+            document.getElementById('modalContacto').classList.remove('active');
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modalContacto');
+            if (event.target === modal) {
+                cerrarModal();
+            }
+        }
+
+        function enviarMensajeContacto(event) {
+            event.preventDefault();
+            const btn = document.getElementById('btnEnviarContacto');
+            btn.innerText = "¡Enviado!";
+            btn.style.backgroundColor = "#4ea8de";
+            setTimeout(() => {
+                cerrarModal();
+                btn.innerText = "Enviar Mensaje";
+                btn.style.backgroundColor = "#00b4d8";
+                event.target.reset();
+            }, 1500);
+        }
+    </script>
 </body>
 </html>
