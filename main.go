@@ -44,6 +44,7 @@ func serveHome(w http.ResponseWriter, r *http.Request) {
 func main() {
 	staticDir := "./static"
 	fileServer := http.FileServer(http.Dir(staticDir))
+
 	http.Handle("/", fileServer)
 
 	http.HandleFunc("/opinion", serveOpinion)

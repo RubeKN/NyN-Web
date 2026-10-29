@@ -3,44 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NyN</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="icon" type="image/x-icon" href="/css/logo.png">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>NyN Solutions</title>
 </head>
 <body>
-    <header>
-    <img id="img-header" src="/css/logo.png" alt="Logo de NyN" width="100">
-    <h1>NyN</h1>
-    </header>
-    <p>NyN es una empresa destinada al servicio de software para la comunidad de Tandil.</p>
-    <p>La plataforma permite realizar reportes de problemas en la
-        vía pública como baches, basura acumulada, luminarias apagadas,
-        veredas rotas y otras situaciones que afectan la ciudad.</p>
-    <p>Los usuarios pueden:</p>
-        <ul>
-            <li>Crear reportes (Nombre, descripcion, direccion, foto, categoria del problema).</li>
-            <li>Ver otros reportes y apoyarlos para que suba su prioridad</li>
-            <li>Los administradores pueden modificar el estado de las solicitudes (Pendiente, en proceso, resuelto, denegado)</li>
-            <li>El creador de la solicitud o administradores pueden eliminar reportes incorrectos, falsos o spam</li>
-        </ul>
-<form action="/opinion" method="POST">
-  <fieldset>
-    <legend>Dejanos tu opinión</legend>
+    <nav class="navbar">
+        <div class="logo">&lt;&gt; NyN</div>
+        <div class="links">
+            <a href="#">Inicio</a>
+            <a href="#">Quiénes somos</a>
+            <a href="#">Servicio</a>
+            <a href="#">Contacto</a>
+        </div>
+    </nav>
 
-    <label for="name">Nombre:</label><br>
-    <input type="text" id="name" name="name" required>
+    <main class="hero">
+        <div class="hero-content">
+            <span class="badge">DESARROLLO WEB Y SOFTWARE A MEDIDA</span>
+            <h1>Software que hace <span class="highlight">crecer</span> tu negocio, no solo que exista.</h1>
+            <p>Diseñamos y desarrollamos páginas web, tiendas online y sistemas a medida. Trabajás directo con el equipo que construye tu proyecto, de principio a fin.</p>
+            <div class="buttons">
+                <a href="#" class="btn btn-primary">Pedí tu presupuesto</a>
+                <a href="#" class="btn btn-secondary">Ver servicios →</a>
+            </div>
+        </div>
 
-    <p>¿Te gustó la aplicación?</p>
-
-    <input type="radio" id="opcionSi" name="opinion" value="Sí" checked>
-    <label for="opcionSi">Sí</label>
-
-    <input type="radio" id="opcionNo" name="opinion" value="No">
-    <label for="opcionNo">No</label>
-
-    <br><br>
-    <button type="submit">Enviar</button>
-  </fieldset>
-</form>
+        <div class="chat-mockup">
+            <div class="chat-header">
+                <span class="dot"></span> Así empieza tu proyecto
+            </div>
+            <div class="chat-bubble left">Hola, tengo un emprendimiento de ropa y necesito una web. ¿Cómo trabajan?</div>
+            <div class="chat-bubble right">¡Hola! Contanos: ¿querés mostrar tu marca o también vender online?</div>
+            <div class="chat-bubble left">Vender online, y que sea fácil de administrar.</div>
+            <div class="chat-bubble right">Perfecto. Te enviamos una propuesta en 48hs con precio y plazos cerrados.</div>
+        </div>
+    </main>
 </body>
 </html>
