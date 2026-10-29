@@ -1,596 +1,370 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css">
-    <title>NyN Software & Tech - Soluciones Digitales</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-        body {
-            background-color: #0b132b;
-            color: #e0fbfc;
-            font-family: 'Segoe UI', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NyN Solutions - Desarrollo Web y Software a Medida</title>
+  <style>
+      /* Estilos Base y Scroll */
+      html { 
+          scroll-behavior: smooth; 
+          scroll-padding-top: 76px; 
+      }
+      body { 
+          margin: 0; 
+          font-family: system-ui, -apple-system, sans-serif; 
+          background-color: #041d1d; /* Fondo principal oscuro (Negro puro) */
+          color: #fdfeff; /* Texto casi blanco */
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+      }
+      
+      /* Navegación */
+      .navbar { 
+          display: flex; 
+          justify-content: space-between; 
+          align-items: center; 
+          height: 107px; 
+          padding: 0 88px; 
+          background-color: rgba(254, 255, 255, 0.95); 
+          backdrop-filter: blur(10px);
+          position: sticky; 
+          top: 0; 
+          z-index: 100; 
+          box-sizing: border-box;
+          border-bottom: 0.2px solid #5d6868;
+      }
+      
+      .logo-container {
+          display: flex;
+          align-items: center;
+          gap: -3000px;
+          text-decoration: none;
+      }
+      .logo-img {
+          height: 140px;
+          width: auto;
+          border-radius: 10px;
+      }
+      .logo { font-weight: 800; font-size: 1.9rem; letter-spacing: 2px; color: #232424; text-decoration: none;}
+      
+      .links {
+          display: flex;
+          align-items: center;
+          gap: 45px;
+          margin: 6 auto; /* Centra los enlaces en el medio */
+      }
+      .links a { text-decoration: none; color: #000000; font-size: 1.5rem; font-weight: 500; transition: color 0.1s;}
+      .links a:hover { color: #a0c8cc; }
 
-        /* --- BARRA SUPERIOR Y LOGO --- */
-        .navbar {
-            background-color: #1c2541;
-            border-bottom: 2px solid #00b4d8;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: #e0fbfc;
-        }
-        .logo-img {
-            height: 40px;
-            width: auto;
-            border-radius: 6px;
-        }
-        .logo-badge {
-            background-color: #00b4d8;
-            color: #0b132b;
-            font-weight: 900;
-            font-size: 1.3rem;
-            padding: 5px 10px;
-            border-radius: 6px;
-            letter-spacing: 1px;
-        }
-        .logo-text {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-        .logo-text span {
-            color: #4ea8de;
-        }
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            flex-wrap: wrap;
-            margin: 0 auto; /* Centra los enlaces en el medio */
-        }
-        .nav-links a {
-            color: #b0c4de;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover {
-            color: #00b4d8;
-        }
+      /* Estructura de Secciones */
+      section { 
+          min-height: 85vh; 
+          padding: 40px 50px; 
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: center; 
+          align-items: center; 
+      }
+      
+      /* Fondo alternativo oscuro para separar módulos */
+      .bg-alt { 
+          background-color: #ffffff;
+      } 
+      
+      .section-title { font-size: 3rem; margin-bottom: 15px; color: #f8fafc; text-align: center; font-weight: 800;}
+      .highlight { color: #2dd4bf; } 
+      .section-subtitle { color: #94a3b8; font-size: 1.2rem; margin-bottom: 50px; max-width: 600px; text-align: center; line-height: 1.6;}
 
-        /* --- HERO SECTION --- */
-        .hero {
-            text-align: center;
-            padding: 50px 20px 30px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .hero h1 {
-            color: #00b4d8;
-            font-size: 2.4rem;
-            margin-bottom: 12px;
-        }
-        .hero p {
-            color: #b0c4de;
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-        .quick-actions {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .btn-outline {
-            background-color: #1c2541;
-            color: #e0fbfc;
-            border: 1px solid #00b4d8;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-        }
-        .btn-outline:hover {
-            background-color: #00b4d8;
-            color: #0b132b;
-        }
+      /* Cajas planas generales */
+      .plano {
+          background-color: #1e293b;
+          border-radius: 16px;
+          border: none;
+      }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
-        .main-wrapper {
-            width: 100%;
-            max-width: 1050px;
-            margin: 0 auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 50px;
-        }
+      /* Hero (Inicio) */
+      .hero-container { display: flex; justify-content: space-between; align-items: center; gap: 50px; width: 100%; max-width: 1200px; }
+      .hero-content { flex: 1; max-width: 600px; }
+      
+      .badge { 
+          display: inline-block; 
+          background-color: #5e6268;
+          color: #b4d6d2; 
+          padding: 8px 16px; 
+          border-radius: 20px; 
+          font-size: 0.75rem; 
+          letter-spacing: 1px; 
+          text-transform: uppercase; 
+          font-weight: 700; 
+          margin-bottom: 24px;
+          border: none;
+      }
+      
+      h1 { font-size: 4.5rem; margin: 0 0 24px 0; line-height: 1.05; color: #f8fafc; letter-spacing: -1.5px;}
+      p.hero-text { color: #cbd5e1; font-size: 1.15rem; line-height: 1.7; margin-bottom: 40px; }
+      
+      /* Botones Planos */
+      .buttons { display: flex; gap: 20px; }
+      .btn { padding: 14px 28px; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.2s; font-size: 1rem; border: none; cursor: pointer; display: inline-block;}
+      
+      .btn-primary { 
+          background-color: #5e6268; 
+          color: #b4d6d2; 
+      }
+      .btn-primary:hover { 
+          background-color: #7995a1; 
+          transform: translateY(-2px); 
+      }
+      
+      .btn-secondary { color: #f8fafc; background: transparent; border: 2px solid #334155;}
+      .btn-secondary:hover { border-color: #2dd4bf; color: #2dd4bf; background: rgba(45, 212, 191, 0.05);}
+      
+      .btn-whatsapp { background-color: #25D366; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; width: fit-content; border: none;}
+      .btn-whatsapp:hover { background-color: #1ebe57; transform: translateY(-2px);}
 
-        /* --- SECCIÓN DE SOLUCIONES --- */
-        .section-title {
-            color: #00b4d8;
-            font-size: 1.6rem;
-            margin-bottom: 20px;
-            border-left: 4px solid #00b4d8;
-            padding-left: 10px;
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .service-card {
-            background-color: #1c2541;
-            border: 1px solid #28385e;
-            border-radius: 10px;
-            padding: 25px;
-            transition: border-color 0.2s, transform 0.2s;
-        }
-        .service-card:hover {
-            border-color: #00b4d8;
-            transform: translateY(-3px);
-        }
-        .service-card h3 {
-            color: #e0fbfc;
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-        }
-        .service-card p {
-            color: #b0c4de;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
+      /* Chat Mockup en Fondo Blanco */
+      .chat-mockup { 
+          flex: 1; 
+          padding: 30px; 
+          max-width: 450px; 
+          background-color: #ffffff;
+          border-radius: 20px;
+      }
+      .chat-header { font-size: 0.85rem; color: #64748b; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
+      .dot { width: 10px; height: 10px; background-color: #2dd4bf; border-radius: 50%; display: inline-block;}
+      .chat-bubble { padding: 16px 20px; border-radius: 16px; margin-bottom: 16px; font-size: 0.95rem; line-height: 1.5; }
+      
+      .chat-bubble.left { 
+          background-color: #f1f5f9;
+          color: #1e293b;
+          margin-right: 40px; 
+          border-bottom-left-radius: 4px; 
+          border: none;
+      }
+      .chat-bubble.right { 
+          background-color: #2dd4bf; 
+          color: #000000;
+          margin-left: 40px; 
+          border-bottom-right-radius: 4px; 
+          font-weight: 600; 
+          border: none;
+      }
 
-        /* --- FORMULARIOS --- */
-        .forms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-        .card {
-            background-color: #1c2541;
-            border: 1px solid #28385e;
-            border-top: 4px solid #00b4d8;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .card h2 {
-            color: #00b4d8;
-            margin-bottom: 6px;
-            font-size: 1.4rem;
-        }
-        .card p.subtitle {
-            color: #b0c4de;
-            font-size: 0.9rem;
-            margin-bottom: 18px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: #e0fbfc;
-        }
-        input[type="text"],
-        input[type="email"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            background-color: #0b132b;
-            border: 1px solid #28385e;
-            border-radius: 6px;
-            color: #e0fbfc;
-            font-family: inherit;
-            font-size: 0.95rem;
-            transition: border-color 0.2s;
-        }
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #00b4d8;
-        }
-        textarea {
-            resize: vertical;
-            min-height: 85px;
-        }
-        .radio-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 6px;
-            flex-wrap: wrap;
-        }
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            background-color: #0b132b;
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: 1px solid #28385e;
-            cursor: pointer;
-            font-size: 0.85rem;
-        }
-        .radio-option input[type="radio"] {
-            accent-color: #00b4d8;
-            cursor: pointer;
-        }
-        .btn-submit {
-            width: 100%;
-            background-color: #00b4d8;
-            color: #0b132b;
-            font-weight: bold;
-            font-size: 0.95rem;
-            border: none;
-            padding: 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: background-color 0.2s;
-            margin-top: 8px;
-        }
-        .btn-submit:hover {
-            background-color: #4ea8de;
-        }
+      /* Servicios */
+      .services-container { max-width: 1200px; width: 100%; }
+      .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px;}
+      .service-card { padding: 40px; transition: transform 0.2s; }
+      .service-card:hover { transform: translateY(-4px); }
+      .service-card h3 { color: #f8fafc; margin-top: 0; font-size: 1.5rem; margin-bottom: 15px;}
+      .service-card p { margin-bottom: 0; font-size: 1.05rem; color: #94a3b8; line-height: 1.7;}
 
-        /* --- PREGUNTAS FRECUENTES (FAQ) --- */
-        .faq-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        details {
-            background-color: #1c2541;
-            border: 1px solid #28385e;
-            border-radius: 8px;
-            padding: 15px 18px;
-            cursor: pointer;
-        }
-        details[open] {
-            border-color: #00b4d8;
-        }
-        summary {
-            font-weight: bold;
-            color: #e0fbfc;
-            font-size: 1rem;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        summary::after {
-            content: "+";
-            color: #00b4d8;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-        details[open] summary::after {
-            content: "−";
-        }
-        details p {
-            margin-top: 10px;
-            color: #b0c4de;
-            line-height: 1.5;
-            font-size: 0.9rem;
-        }
+      /* Quiénes Somos */
+      .quienes-somos-container { max-width: 1200px; width: 100%; }
+      .quienes-somos-content { display: flex; gap: 60px; align-items: center; margin-top: 20px;}
+      .quienes-somos-text { flex: 1.5; }
+      .quienes-somos-stats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .stat { padding: 30px 20px; text-align: center; }
+      .stat-number { display: block; font-size: 3rem; font-weight: 800; color: #2dd4bf; margin-bottom: 5px; line-height: 1;}
+      .stat-label { color: #85b5c4; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
+      .quienes-somos-text p { color: #cbd5e1; font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px; }
 
-        /* --- FOOTER Y BOTÓN DE CONTACTO INFERIOR --- */
-        footer {
-            margin-top: auto;
-            background-color: #1c2541;
-            border-top: 1px solid #28385e;
-            text-align: center;
-            padding: 30px 20px;
-            color: #b0c4de;
-            font-size: 0.85rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-        .btn-contacto-footer {
-            background-color: #00b4d8;
-            color: #0b132b;
-            padding: 10px 22px;
-            border-radius: 6px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.2s, transform 0.1s;
-        }
-        .btn-contacto-footer:hover {
-            background-color: #4ea8de;
-            transform: translateY(-1px);
-        }
-
-        /* --- MODAL DE CONTACTO --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(11, 19, 43, 0.85);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 200;
-            padding: 20px;
-        }
-        .modal-overlay.active {
-            display: flex;
-        }
-        .modal {
-            background-color: #1c2541;
-            border: 2px solid #00b4d8;
-            border-radius: 10px;
-            padding: 30px;
-            max-width: 420px;
-            width: 100%;
-            position: relative;
-        }
-        .close-modal {
-            position: absolute;
-            top: 12px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: #b0c4de;
-            font-size: 1.4rem;
-            cursor: pointer;
-        }
-        .close-modal:hover {
-            color: #00b4d8;
-        }
-        .contact-info-list {
-            margin: 15px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            color: #b0c4de;
-            font-size: 0.9rem;
-        }
-    </style>
+      /* Contacto */
+      .contacto-container { max-width: 1200px; width: 100%; display: flex; gap: 60px; align-items: center;}
+      .contacto-info { flex: 1; }
+      .contacto-form { flex: 1; padding: 45px; width: 100%; box-sizing: border-box;}
+      
+      .form-group { margin-bottom: 25px; text-align: left; }
+      .form-group label { display: block; margin-bottom: 10px; font-weight: 600; font-size: 0.95rem; color: #cbd5e1;}
+      .form-control { 
+          width: 100%; 
+          padding: 16px; 
+          border: 1px solid #334155; 
+          border-radius: 12px; 
+          font-size: 1rem; 
+          font-family: inherit; 
+          box-sizing: border-box; 
+          background-color: #0f172a;
+          color: #f8fafc;
+          transition: all 0.2s;
+      }
+      .form-control:focus { outline: none; border-color: #2dd4bf; }
+      .form-control::placeholder { color: #64748b; }
+      textarea.form-control { resize: vertical; min-height: 130px; }
+      
+      .opciones-contacto { display: flex; flex-direction: column; gap: 15px; align-items: flex-start; margin-top: 35px; padding-top: 35px; border-top: 1px solid #334155;}
+  
+      /* Footer y Botón de Contacto Inferior */
+      footer {
+          margin-top: auto;
+          background-color: #0b1121;
+          border-top: 1px solid #1e293b;
+          text-align: center;
+          padding: 30px 20px;
+          color: #94a3b8;
+          font-size: 0.9rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 15px;
+      }
+      .btn-contacto-footer {
+          background-color: #2dd4bf;
+          color: #000000;
+          padding: 12px 24px;
+          border-radius: 30px;
+          font-weight: 700;
+          text-transform: uppercase;
+          font-size: 0.9rem;
+          cursor: pointer;
+          border: none;
+          text-decoration: none;
+          transition: background-color 0.2s, transform 0.1s;
+      }
+      .btn-contacto-footer:hover {
+          background-color: #14b8a6;
+          transform: translateY(-2px);
+      }
+  </style>
 </head>
 <body>
 
     <!-- BARRA DE NAVEGACIÓN -->
     <nav class="navbar">
-        <a href="/" class="logo-container">
-            <img src="/img/logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
-            <div class="logo-badge">NyN</div>
-            <div class="logo-text">Software <span>Tech</span></div>
+        <a href="#inicio" class="logo-container">
+            <!-- Logo ubicado a la izquierda del título según la estructura del proyecto -->
+            <img src="/css/nynlogo.png" alt="Logo NyN Solutions" class="logo-img" onerror="this.style.display='none'">
+            <span class="logo">NyN Solutions</span>
         </a>
-        <div class="nav-links">
-            <a href="#servicios">Soluciones</a>
-            <a href="#formularios">Cotizar</a>
-            <a href="#faq">FAQ</a>
+        <div class="links">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#quienes-somos">Quiénes somos</a>
+            <a href="#contacto">Contacto</a>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero">
-        <h1>Soluciones de Software para Empresas</h1>
-        <p>Desarrollo web a medida e implementaciones tecnológicas clave para escalar tu negocio de forma ágil.</p>
-        <div class="quick-actions">
-            <a href="#form-reporte" class="btn-outline">Solicitar Proyecto</a>
-            <a href="#servicios" class="btn-outline">Ver Servicios</a>
+    <!-- 1. INICIO -->
+    <section id="inicio">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="badge">Desarrollo a tu medida</span>
+                <h1>Software que hace <span class="highlight">crecer</span> tu negocio.</h1>
+                <p class="hero-text">Diseñamos y desarrollamos páginas web, tiendas online y sistemas a medida. Trabajás directo con el equipo que construye tu proyecto, de principio a fin, sin intermediarios.</p>
+                <div class="buttons">
+                    <a href="#contacto" class="btn btn-primary">Pedí tu presupuesto</a>
+                    <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+                </div>
+            </div>
+
+            <!-- Chat con fondo blanco -->
+            <div class="chat-mockup">
+                <div class="chat-header">
+                    <span class="dot"></span> Así empieza tu proyecto
+                </div>
+                <div class="chat-bubble left">Hola, tengo un emprendimiento y necesito una web profesional. ¿Cómo trabajan?</div>
+                <div class="chat-bubble right">¡Hola! Contanos: ¿buscás una web institucional o querés vender online?</div>
+                <div class="chat-bubble left">Quiero vender online y que sea fácil de administrar para mi equipo.</div>
+                <div class="chat-bubble right">Perfecto. Te armamos una propuesta a medida con tiempos y costos cerrados.</div>
+            </div>
         </div>
     </section>
 
-    <div class="main-wrapper">
-
-        <!-- SECCIÓN DE SOLUCIONES -->
-        <section id="servicios">
-            <h2 class="section-title">Soluciones y Mejoras Tecnológicas</h2>
+    <!-- 2. SERVICIOS -->
+    <section id="servicios" class="bg-alt">
+        <div class="services-container">
+            <h2 class="section-title">Qué <span class="highlight">hacemos</span></h2>
+            <p class="section-subtitle" style="margin: 0 auto 50px auto;">Soluciones tecnológicas modernas, rápidas y pensadas para escalar con tu negocio.</p>
+            
             <div class="services-grid">
-                <div class="service-card">
-                    <h3>Desarrollo Web & E-commerce</h3>
-                    <p>Sitios web corporativos rápidos, optimizados para conversión y adaptados a tus objetivos comerciales.</p>
+                <div class="service-card plano">
+                    <h3>Desarrollo Web</h3>
+                    <p>Landing pages y sitios institucionales ultra rápidos, optimizados para Google y adaptados a cualquier celular o pantalla.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card plano">
+                    <h3>E-Commerce</h3>
+                    <p>Tiendas online completas, seguras y fáciles de autogestionar para que empieces a vender las 24 horas sin fricciones.</p>
+                </div>
+                <div class="service-card plano">
                     <h3>Software a Medida</h3>
-                    <p>Sistemas de gestión internos y aplicaciones escalables diseñadas para optimizar el flujo de trabajo.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Transformación Digital</h3>
-                    <p>Consultoría e implementaciones tecnológicas estratégicas para empresas emergentes.</p>
+                    <p>Sistemas internos, automatizaciones y herramientas de gestión diseñadas exactamente para los procesos de tu empresa.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- FORMULARIOS -->
-        <section id="formularios" class="forms-grid">
-            <div class="card" id="form-reporte">
-                <form action="/reporte" method="POST">
-                    <h2>Cotizar Proyecto</h2>
-                    <p class="subtitle">Completá los datos para evaluar los requerimientos de tu empresa.</p>
-
-                    <div class="form-group">
-                        <label for="nombre">Nombre y Apellido</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Ej. Carlos Mendoza" required>
+    <!-- 3. QUIÉNES SOMOS -->
+    <section id="quienes-somos">
+        <div class="quienes-somos-container">
+            <h2 class="section-title">Quiénes <span class="highlight">somos</span></h2>
+            <p class="section-subtitle" style="margin: 0 auto 50px auto;">Un equipo comprometido con la calidad técnica y el éxito de tus ideas.</p>
+            
+            <div class="quienes-somos-content">
+                <div class="quienes-somos-text">
+                    <p>Somos desarrolladores apasionados por crear tecnología que funcione perfecto y se vea increíble. No usamos plantillas aburridas ni soluciones genéricas; escribimos código a medida porque creemos que cada negocio tiene necesidades únicas.</p>
+                    <p>Nos enfocamos en la transparencia, la comunicación directa y en entregar proyectos que realmente aporten valor. Nuestro objetivo no es solo entregarte una web, sino un activo digital que te ayude a vender más y mejor.</p>
+                </div>
+                <div class="quienes-somos-stats">
+                    <div class="stat plano">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Código a medida</span>
                     </div>
-
-                    <div class="form-group">
-                        <label for="categoria">Solución Requerida</label>
-                        <select id="categoria" name="categoria" required>
-                            <option value="" disabled selected>Seleccioná una opción...</option>
-                            <option value="Desarrollo Web">Desarrollo Web / Landing Page</option>
-                            <option value="Software a Medida">Software a Medida</option>
-                            <option value="E-commerce">Tienda Online</option>
-                            <option value="Consultoria">Consultoría Tecnológica</option>
-                        </select>
+                    <div class="stat plano">
+                        <span class="stat-number">24h</span>
+                        <span class="stat-label">Respuesta</span>
                     </div>
-
-                    <div class="form-group">
-                        <label for="direccion">Sitio Web / Empresa</label>
-                        <input type="text" id="direccion" name="direccion" placeholder="Ej. Empresa S.A.">
+                    <div class="stat plano" style="grid-column: span 2;">
+                        <span class="stat-number">+ Eficiencia</span>
+                        <span class="stat-label">En tus procesos</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="form-group">
-                        <label for="descripcion">Descripción del requerimiento</label>
-                        <textarea id="descripcion" name="descripcion" placeholder="Detallá el objetivo principal..." required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-submit">Enviar Solicitud</button>
-                </form>
+    <!-- 4. CONTACTO -->
+    <section id="contacto" class="bg-alt">
+        <div class="contacto-container">
+            <div class="contacto-info">
+                <h2 class="section-title" style="text-align: left;">¿Listo para <span class="highlight">empezar</span>?</h2>
+                <p class="section-subtitle" style="text-align: left; margin-bottom: 20px;">Dejanos tus datos o escribinos directo. Te respondemos rápido para coordinar una reunión y evaluar tu proyecto sin compromiso.</p>
+                
+                <div class="opciones-contacto">
+                    <p style="margin:0; font-weight: 600; color:#cbd5e1;">Datos de contacto directo:</p>
+                    <p style="margin:5px 0 0 0; color:#94a3b8;">Email: <strong>madarietasanti@gmail.com</strong></p>
+                    <p style="margin:5px 0 0 0; color:#94a3b8;">Teléfono / WhatsApp: <strong>2494371164</strong></p>
+                    <a href="https://wa.me/5492494371164" target="_blank" class="btn-whatsapp btn" style="margin-top: 10px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        Escribinos por WhatsApp
+                    </a>
+                </div>
             </div>
 
-            <div class="card" id="form-opinion">
-                <form action="/opinion" method="POST">
-                    <div>
-                        <h2>Reseña de Clientes</h2>
-                        <p class="subtitle">Califiqué la calidad de nuestros servicios.</p>
-
-                        <div class="form-group">
-                            <label for="name">Tu Nombre / Empresa</label>
-                            <input type="text" id="name" name="name" placeholder="Ej. Sofía Benítez" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>¿Cómo calificás nuestras soluciones?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="opinion" value="sí" required>
-                                    Excelente
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="opinion" value="más o menos">
-                                    Muy buena
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="opinion" value="no">
-                                    A mejorar
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-submit">Enviar Reseña</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- FAQ -->
-        <section id="faq">
-            <h2 class="section-title">Preguntas Frecuentes</h2>
-            <div class="faq-container">
-                <details>
-                    <summary>¿Cuánto demora el desarrollo de una web?</summary>
-                    <p>El tiempo estimado se encuentra entre 2 y 4 semanas según los requerimientos del proyecto.</p>
-                </details>
-                <details>
-                    <summary>¿Trabajan con empresas emergentes?</summary>
-                    <p>Sí, ofrecemos soluciones modulares e implementaciones por etapas para adaptarnos a las necesidades iniciales.</p>
-                </details>
-                <details>
-                    <summary>¿Ofrecen soporte post-lanzamiento?</summary>
-                    <p>Sí, contamos con planes de mantenimiento y soporte técnico continuo.</p>
-                </details>
-            </div>
-        </section>
-
-    </div>
-
-    <!-- MODAL DE CONTACTO -->
-    <div class="modal-overlay" id="modalContacto">
-        <div class="modal">
-            <button class="close-modal" onclick="cerrarModal()">&times;</button>
-            <h2 style="color: #00b4d8; margin-bottom: 8px;">Contacto Directo</h2>
-            <p style="color: #b0c4de; font-size: 0.9rem;">Hablemos sobre tu próximo proyecto tecnológico.</p>
-
-            <div class="contact-info-list">
-                <div>Email: madarietasanti@gmail.com</div>
-                <div>Teléfono / WhatsApp: 2494371164</div>
-            </div>
-
-            <hr style="border: 0; border-top: 1px solid #28385e; margin: 15px 0;">
-
-            <form onsubmit="enviarMensajeContacto(event)">
+            <form class="contacto-form plano" action="/enviar" method="POST">
                 <div class="form-group">
-                    <label for="contacto-email">Correo electrónico</label>
-                    <input type="email" id="contacto-email" placeholder="correo@empresa.com" required>
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej. Juan Pérez" required>
                 </div>
                 <div class="form-group">
-                    <label for="contacto-msj">Mensaje</label>
-                    <textarea id="contacto-msj" placeholder="Escribí tu consulta..." required></textarea>
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="tu@correo.com" required>
                 </div>
-                <button type="submit" class="btn-submit" id="btnEnviarContacto">Enviar Mensaje</button>
+                <div class="form-group">
+                    <label for="mensaje">¿De qué trata tu proyecto?</label>
+                    <textarea id="mensaje" name="mensaje" class="form-control" placeholder="Contanos brevemente qué necesitás..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 16px;">Enviar mensaje</button>
             </form>
         </div>
-    </div>
+    </section>
 
     <!-- FOOTER CON BOTÓN DE CONTACTO ABAJO DEL TODO -->
     <footer>
-        <button class="btn-contacto-footer" onclick="abrirModal()">Contáctanos</button>
-        <p>&copy; 2026 NyN Software Tech — Soluciones digitales para empresas.</p>
+        <a href="#contacto" class="btn-contacto-footer">Contáctanos</a>
+        <p>&copy; 2026 NyN Solutions — Soluciones digitales y software a medida.</p>
     </footer>
 
-    <script>
-        function abrirModal() {
-            document.getElementById('modalContacto').classList.add('active');
-        }
-
-        function cerrarModal() {
-            document.getElementById('modalContacto').classList.remove('active');
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('modalContacto');
-            if (event.target === modal) {
-                cerrarModal();
-            }
-        }
-
-        function enviarMensajeContacto(event) {
-            event.preventDefault();
-            const btn = document.getElementById('btnEnviarContacto');
-            btn.innerText = "¡Enviado!";
-            btn.style.backgroundColor = "#4ea8de";
-            setTimeout(() => {
-                cerrarModal();
-                btn.innerText = "Enviar Mensaje";
-                btn.style.backgroundColor = "#00b4d8";
-                event.target.reset();
-            }, 1500);
-        }
-    </script>
 </body>
 </html>
