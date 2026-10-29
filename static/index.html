@@ -1,46 +1,313 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NyN</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="icon" type="image/x-icon" href="/css/logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NyN Solutions - Desarrollo Web y Software a Medida</title>
+  <style>
+      /* Estilos Base y Scroll */
+      html { 
+          scroll-behavior: smooth; 
+          scroll-padding-top: 76px; 
+      }
+      body { 
+          margin: 0; 
+          font-family: system-ui, -apple-system, sans-serif; 
+          background-color: #000000; /* Fondo principal oscuro (Negro puro) */
+          color: #f8fafc; /* Texto casi blanco */
+      }
+      
+      /* Navegación */
+      .navbar { 
+          display: flex; 
+          justify-content: space-between; 
+          align-items: center; 
+          height: 90px; 
+          padding: 0 70px; 
+          background-color: rgba(0, 0, 0, 0.95); 
+          backdrop-filter: blur(10px);
+          position: sticky; 
+          top: 0; 
+          z-index: 100; 
+          box-sizing: border-box;
+          border-bottom: 1px solid #1e293b; /* Línea separadora plana */
+      }
+      
+      .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.5px; color: #f8fafc; text-decoration: none;}
+      
+      .links a { text-decoration: none; color: #cbd5e1; margin-left: 35px; font-size: 1rem; font-weight: 500; transition: color 0.2s;}
+      .links a:hover { color: #2dc6d4; } /* Azul verdoso claro (Teal) */
+
+      /* Estructura de Secciones */
+      section { 
+          min-height: 85vh; 
+          padding: 40px 50px; 
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: center; 
+          align-items: center; 
+      }
+      
+      /* Fondo alternativo oscuro para separar módulos */
+      .bg-alt { 
+          background-color: #0b1121; /* Un azul noche/gris ultra oscuro para separar secciones */
+      } 
+      
+      .section-title { font-size: 3rem; margin-bottom: 15px; color: #f8fafc; text-align: center; font-weight: 800;}
+      .highlight { color: #2dd4bf; } 
+      .section-subtitle { color: #94a3b8; font-size: 1.2rem; margin-bottom: 50px; max-width: 600px; text-align: center; line-height: 1.6;}
+
+      /* Cajas planas generales */
+      .plano {
+          background-color: #1e293b; /* Gris oscuro para las tarjetas */
+          border-radius: 16px;
+          border: none; /* Borde eliminado para que sea 100% plano */
+      }
+
+      /* Hero (Inicio) */
+      .hero-container { display: flex; justify-content: space-between; align-items: center; gap: 50px; width: 100%; max-width: 1200px; }
+      .hero-content { flex: 1; max-width: 600px; }
+      
+      /* Badge sin brillos (Totalmente plano) */
+      .badge { 
+          display: inline-block; 
+          background-color: #1e293b; /* Fondo gris oscuro sólido */
+          color: #2dd4bf; 
+          padding: 8px 16px; 
+          border-radius: 20px; 
+          font-size: 0.75rem; 
+          letter-spacing: 1px; 
+          text-transform: uppercase; 
+          font-weight: 700; 
+          margin-bottom: 24px;
+          border: none; /* Sin borde brillante */
+      }
+      
+      h1 { font-size: 4.5rem; margin: 0 0 24px 0; line-height: 1.05; color: #f8fafc; letter-spacing: -1.5px;}
+      p.hero-text { color: #cbd5e1; font-size: 1.15rem; line-height: 1.7; margin-bottom: 40px; }
+      
+      /* Botones Planos */
+      .buttons { display: flex; gap: 20px; }
+      .btn { padding: 14px 28px; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.2s; font-size: 1rem; border: none; cursor: pointer; display: inline-block;}
+      
+      /* Botón Blanco pedido */
+      .btn-primary { 
+          background-color: #ffffff; 
+          color: #000000; 
+      }
+      .btn-primary:hover { 
+          background-color: #e2e8f0; 
+          transform: translateY(-2px); 
+      }
+      
+      .btn-secondary { color: #f8fafc; background: transparent; border: 2px solid #334155;}
+      .btn-secondary:hover { border-color: #2dd4bf; color: #2dd4bf; background: rgba(45, 212, 191, 0.05);}
+      
+      .btn-whatsapp { background-color: #25D366; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; width: fit-content; border: none;}
+      .btn-whatsapp:hover { background-color: #1ebe57; transform: translateY(-2px);}
+
+      /* Chat Mockup en Fondo Blanco */
+      .chat-mockup { 
+          flex: 1; 
+          padding: 30px; 
+          max-width: 450px; 
+          background-color: #ffffff; /* Fondo blanco */
+          border-radius: 20px;
+      }
+      .chat-header { font-size: 0.85rem; color: #64748b; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
+      .dot { width: 10px; height: 10px; background-color: #2dd4bf; border-radius: 50%; display: inline-block;}
+      .chat-bubble { padding: 16px 20px; border-radius: 16px; margin-bottom: 16px; font-size: 0.95rem; line-height: 1.5; }
+      
+      /* Globos de texto ajustados para fondo blanco */
+      .chat-bubble.left { 
+          background-color: #f1f5f9; /* Gris clarito para contraste */
+          color: #1e293b; /* Texto oscuro */
+          margin-right: 40px; 
+          border-bottom-left-radius: 4px; 
+          border: none;
+      }
+      .chat-bubble.right { 
+          background-color: #2dd4bf; 
+          color: #000000; /* Texto negro para que resalte bien */
+          margin-left: 40px; 
+          border-bottom-right-radius: 4px; 
+          font-weight: 600; 
+          border: none;
+      }
+
+      /* Servicios */
+      .services-container { max-width: 1200px; width: 100%; }
+      .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px;}
+      .service-card { padding: 40px; transition: transform 0.2s; }
+      .service-card:hover { transform: translateY(-4px); }
+      .service-card h3 { color: #f8fafc; margin-top: 0; font-size: 1.5rem; margin-bottom: 15px;}
+      .service-card p { margin-bottom: 0; font-size: 1.05rem; color: #94a3b8; line-height: 1.7;}
+
+      /* Quiénes Somos */
+      .quienes-somos-container { max-width: 1200px; width: 100%; }
+      .quienes-somos-content { display: flex; gap: 60px; align-items: center; margin-top: 20px;}
+      .quienes-somos-text { flex: 1.5; }
+      .quienes-somos-stats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .stat { padding: 30px 20px; text-align: center; }
+      .stat-number { display: block; font-size: 3rem; font-weight: 800; color: #2dd4bf; margin-bottom: 5px; line-height: 1;}
+      .stat-label { color: #94a3b8; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
+      .quienes-somos-text p { color: #cbd5e1; font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px; }
+
+      /* Contacto */
+      .contacto-container { max-width: 1200px; width: 100%; display: flex; gap: 60px; align-items: center;}
+      .contacto-info { flex: 1; }
+      .contacto-form { flex: 1; padding: 45px; width: 100%; box-sizing: border-box;}
+      
+      .form-group { margin-bottom: 25px; text-align: left; }
+      .form-group label { display: block; margin-bottom: 10px; font-weight: 600; font-size: 0.95rem; color: #cbd5e1;}
+      .form-control { 
+          width: 100%; 
+          padding: 16px; 
+          border: 1px solid #334155; 
+          border-radius: 12px; 
+          font-size: 1rem; 
+          font-family: inherit; 
+          box-sizing: border-box; 
+          background-color: #0f172a;
+          color: #f8fafc;
+          transition: all 0.2s;
+      }
+      .form-control:focus { outline: none; border-color: #2dd4bf; }
+      .form-control::placeholder { color: #64748b; }
+      textarea.form-control { resize: vertical; min-height: 130px; }
+      
+      .opciones-contacto { display: flex; flex-direction: column; gap: 15px; align-items: flex-start; margin-top: 35px; padding-top: 35px; border-top: 1px solid #334155;}
+  </style>
 </head>
 <body>
-    <header>
-    <img id="img-header" src="/css/logo.png" alt="Logo de NyN" width="100">
-    <h1>NyN</h1>
-    </header>
-    <p>NyN es una empresa destinada al servicio de software para la comunidad de Tandil.</p>
-    <p>La plataforma permite realizar reportes de problemas en la
-        vía pública como baches, basura acumulada, luminarias apagadas,
-        veredas rotas y otras situaciones que afectan la ciudad.</p>
-    <p>Los usuarios pueden:</p>
-        <ul>
-            <li>Crear reportes (Nombre, descripcion, direccion, foto, categoria del problema).</li>
-            <li>Ver otros reportes y apoyarlos para que suba su prioridad</li>
-            <li>Los administradores pueden modificar el estado de las solicitudes (Pendiente, en proceso, resuelto, denegado)</li>
-            <li>El creador de la solicitud o administradores pueden eliminar reportes incorrectos, falsos o spam</li>
-        </ul>
-<form action="/opinion" method="POST">
-  <fieldset>
-    <legend>Dejanos tu opinión</legend>
 
-    <label for="name">Nombre:</label><br>
-    <input type="text" id="name" name="name" required>
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="navbar">
+        <a href="#inicio" class="logo">
+            &lt;&gt; NyN Solutions
+        </a>
+        <div class="links">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#quienes-somos">Quiénes somos</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </nav>
 
-    <p>¿Te gustó la aplicación?</p>
+    <!-- 1. INICIO -->
+    <section id="inicio">
+        <div class="hero-container">
+            <div class="hero-content">
+                <!-- Se cambió la clase a 'badge' plano -->
+                <span class="badge">Desarrollo a tu medida</span>
+                <h1>Software que hace <span class="highlight">crecer</span> tu negocio.</h1>
+                <p class="hero-text">Diseñamos y desarrollamos páginas web, tiendas online y sistemas a medida. Trabajás directo con el equipo que construye tu proyecto, de principio a fin, sin intermediarios.</p>
+                <div class="buttons">
+                    <a href="#contacto" class="btn btn-primary">Pedí tu presupuesto</a>
+                    <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+                </div>
+            </div>
 
-    <input type="radio" id="opcionSi" name="opinion" value="Sí" checked>
-    <label for="opcionSi">Sí</label>
+            <!-- Chat con fondo blanco -->
+            <div class="chat-mockup">
+                <div class="chat-header">
+                    <span class="dot"></span> Así empieza tu proyecto
+                </div>
+                <div class="chat-bubble left">Hola, tengo un emprendimiento y necesito una web profesional. ¿Cómo trabajan?</div>
+                <div class="chat-bubble right">¡Hola! Contanos: ¿buscás una web institucional o querés vender online?</div>
+                <div class="chat-bubble left">Quiero vender online y que sea fácil de administrar para mi equipo.</div>
+                <div class="chat-bubble right">Perfecto. Te armamos una propuesta a medida con tiempos y costos cerrados.</div>
+            </div>
+        </div>
+    </section>
 
-    <input type="radio" id="opcionNo" name="opinion" value="No">
-    <label for="opcionNo">No</label>
+    <!-- 2. SERVICIOS -->
+    <section id="servicios" class="bg-alt">
+        <div class="services-container">
+            <h2 class="section-title">Qué <span class="highlight">hacemos</span></h2>
+            <p class="section-subtitle" style="margin: 0 auto 50px auto;">Soluciones tecnológicas modernas, rápidas y pensadas para escalar con tu negocio.</p>
+            
+            <div class="services-grid">
+                <!-- Cajas con clase 'plano' -->
+                <div class="service-card plano">
+                    <h3>Desarrollo Web</h3>
+                    <p>Landing pages y sitios institucionales ultra rápidos, optimizados para Google y adaptados a cualquier celular o pantalla.</p>
+                </div>
+                <div class="service-card plano">
+                    <h3>E-Commerce</h3>
+                    <p>Tiendas online completas, seguras y fáciles de autogestionar para que empieces a vender las 24 horas sin fricciones.</p>
+                </div>
+                <div class="service-card plano">
+                    <h3>Software a Medida</h3>
+                    <p>Sistemas internos, automatizaciones y herramientas de gestión diseñadas exactamente para los procesos de tu empresa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <br><br>
-    <button type="submit">Enviar</button>
-  </fieldset>
-</form>
+    <!-- 3. QUIÉNES SOMOS -->
+    <section id="quienes-somos">
+        <div class="quienes-somos-container">
+            <h2 class="section-title">Quiénes <span class="highlight">somos</span></h2>
+            <p class="section-subtitle" style="margin: 0 auto 50px auto;">Un equipo comprometido con la calidad técnica y el éxito de tus ideas.</p>
+            
+            <div class="quienes-somos-content">
+                <div class="quienes-somos-text">
+                    <p>Somos desarrolladores apasionados por crear tecnología que funcione perfecto y se vea increíble. No usamos plantillas aburridas ni soluciones genéricas; escribimos código a medida porque creemos que cada negocio tiene necesidades únicas.</p>
+                    <p>Nos enfocamos en la transparencia, la comunicación directa y en entregar proyectos que realmente aporten valor. Nuestro objetivo no es solo entregarte una web, sino un activo digital que te ayude a vender más y mejor.</p>
+                </div>
+                <div class="quienes-somos-stats">
+                    <div class="stat plano">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Código a medida</span>
+                    </div>
+                    <div class="stat plano">
+                        <span class="stat-number">24h</span>
+                        <span class="stat-label">Respuesta</span>
+                    </div>
+                    <div class="stat plano" style="grid-column: span 2;">
+                        <span class="stat-number">+ Eficiencia</span>
+                        <span class="stat-label">En tus procesos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CONTACTO -->
+    <section id="contacto" class="bg-alt">
+        <div class="contacto-container">
+            <div class="contacto-info">
+                <h2 class="section-title" style="text-align: left;">¿Listo para <span class="highlight">empezar</span>?</h2>
+                <p class="section-subtitle" style="text-align: left; margin-bottom: 20px;">Dejanos tus datos o escribinos directo. Te respondemos rápido para coordinar una reunión y evaluar tu proyecto sin compromiso.</p>
+                
+                <div class="opciones-contacto">
+                    <p style="margin:0; font-weight: 600; color:#cbd5e1;">¿Preferís un trato más rápido?</p>
+                    <a href="https://wa.me/1234567890" target="_blank" class="btn-whatsapp btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        Escribinos por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <form class="contacto-form plano" action="/enviar" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej. Juan Pérez" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="tu@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">¿De qué trata tu proyecto?</label>
+                    <textarea id="mensaje" name="mensaje" class="form-control" placeholder="Contanos brevemente qué necesitás..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 16px;">Enviar mensaje</button>
+            </form>
+        </div>
+    </section>
+
 </body>
 </html>
