@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <rect width="1600" height="900" fill="#FBF7F2"/>
+  <polygon points="0,0 520,0 180,900 0,900" fill="#1E4D8C" opacity="0.07"/>
+  <polygon points="1080,0 1600,0 1600,900 860,900" fill="#1E4D8C" opacity="0.06"/>
+  <polygon points="980,-80 1320,40 1040,980 620,820" fill="#F26B1D" opacity="0.2"/>
+  <polygon points="1120,40 1540,180 1480,560 1020,390" fill="#1E4D8C" opacity="0.22"/>
+  <polygon points="1210,210 1600,320 1540,700 1090,540" fill="#F26B1D" opacity="0.34"/>
+  <polygon points="1320,80 1600,150 1600,430 1260,300" fill="#F26B1D" opacity="0.18"/>
+  <polygon points="0,640 460,520 500,640 40,760" fill="#1E4D8C" opacity="0.1"/>
+  <polygon points="70,80 250,40 190,230" fill="#F26B1D" opacity="0.16"/>
+  <polygon points="40,150 160,120 130,280 10,250" fill="#1E4D8C" opacity="0.12"/>
+</svg>
