@@ -5,242 +5,419 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NyN Solutions - Desarrollo Web y Software a Medida</title>
   <style>
-      /* Estilos Base y Scroll */
-      html { 
-          scroll-behavior: smooth; 
-          scroll-padding-top: 90px; 
+      html { scroll-behavior: smooth; }
+      body {
+          margin: 0;
+          font-family: system-ui, -apple-system, sans-serif;
+          background-color: #f6f4f1;
+          color: #04101f;
       }
-      body { 
-          margin: 0; 
-          font-family: system-ui, -apple-system, sans-serif; 
-          background-color: #FBF7F2;
-          color: #1A2740;
-      }
-      
-      /* Navegación */
-      .navbar { 
-          display: flex; 
-          justify-content: space-between; 
-          align-items: center; 
-          height: 90px; 
-          padding: 0 70px; 
-          background-color: rgba(251, 247, 242, 0.92); 
-          backdrop-filter: blur(10px);
-          position: sticky; 
-          top: 0; 
-          z-index: 100; 
+
+      .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 104px;
+          padding: 0 48px;
+          background-color: rgba(247, 245, 242, 0.78);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-bottom: 1px solid #e4dfd8;
+          position: sticky;
+          top: 0;
+          z-index: 100;
           box-sizing: border-box;
-          border-bottom: 3px solid #F26B1D;
       }
-      
-      .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.5px; color: #1A2740; text-decoration: none;}
-      
-      .links a { text-decoration: none; color: #1E4D8C; margin-left: 35px; font-size: 1rem; font-weight: 500; transition: color 0.2s;}
-      .links a:hover { color: #F26B1D; }
+      .logo { font-weight: 800; font-size: 1.55rem; letter-spacing: -0.3px; color: #04101f; text-decoration: none; }
+      .nav-toggle {
+          display: none;
+          width: 42px;
+          height: 42px;
+          padding: 10px;
+          border: 1px solid #c5d4e4;
+          border-radius: 10px;
+          background: transparent;
+          cursor: pointer;
+      }
+      .nav-toggle span {
+          display: block;
+          height: 2px;
+          margin: 5px 0;
+          background: #04101f;
+          border-radius: 2px;
+      }
+      .links a { text-decoration: none; color: #04101f; margin-left: 36px; font-size: 1.12rem; font-weight: 500; }
+      .links a:hover { color: #c56a32; }
+      .links a.nav-contacto {
+          margin-left: 28px;
+          padding: 11px 18px;
+          border-radius: 999px;
+          background: #c56a32;
+          color: #fffaf6;
+          font-weight: 700;
+          animation: nav-contacto-pulso 2.4s ease-out infinite;
+      }
+      .links a.nav-contacto:hover { background: #a85628; color: #fffaf6; }
+      @keyframes nav-contacto-pulso {
+          0% { box-shadow: 0 0 0 0 rgba(197, 106, 50, 0.45); }
+          70% { box-shadow: 0 0 0 9px rgba(197, 106, 50, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(197, 106, 50, 0); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+          .links a.nav-contacto { animation: none; }
+      }
+      .nav-inicio { display: none; }
+      .nav-inicio.is-visible { display: inline; }
 
-      /* Inicio solo aparece cuando esa sección ya no se ve */
-      .links a.nav-inicio {
-          display: inline-block;
-          max-width: 0;
-          margin-left: 0;
-          opacity: 0;
-          overflow: hidden;
-          white-space: nowrap;
-          vertical-align: bottom;
-          pointer-events: none;
-          transition: max-width 0.35s ease, opacity 0.25s ease, margin-left 0.35s ease, color 0.2s;
-      }
-      .links a.nav-inicio.is-visible {
-          max-width: 8rem;
-          margin-left: 35px;
-          opacity: 1;
-          pointer-events: auto;
-      }
-
-      /* Estructura de Secciones */
-      section { 
-          min-height: calc(100vh - 90px); 
-          padding: 40px 50px; 
+      section {
+          min-height: 0;
+          padding: 168px 36px 148px;
           box-sizing: border-box;
           display: flex;
           flex-direction: column;
-          justify-content: center; 
-          align-items: center; 
+          justify-content: center;
+          align-items: center;
       }
+      .bg-alt { background-color: #eef2f6; }
 
       #inicio {
           position: relative;
-          isolation: isolate;
           overflow: hidden;
-          background-color: #FBF7F2;
+          min-height: 0;
+          padding: 112px 36px 140px;
+          background-color: #04101f;
+          color: #f6f4f1;
       }
       #inicio::before {
           content: "";
           position: absolute;
-          inset: -10%;
-          z-index: -1;
-          pointer-events: none;
-          background: url("/img/inicio-fondo.svg") center / cover no-repeat;
-          animation: inicio-drift 26s ease-in-out infinite alternate;
+          inset: -16%;
+          background: url("img/inicio-fondo.jpg") center / cover no-repeat;
+          filter: brightness(0.48) sepia(0.75) saturate(1.9) hue-rotate(208deg);
+          animation: inicio-fondo 16s ease-in-out infinite alternate;
+          z-index: 0;
       }
-      #inicio::after { content: none; }
-      @keyframes inicio-drift {
-          from { transform: scale(1.05) translate3d(-1.6%, -1%, 0); }
-          to { transform: scale(1.1) translate3d(1.6%, 1.2%, 0); }
+      #inicio::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background:
+              linear-gradient(105deg, rgba(2, 16, 42, 0.52) 0%, rgba(4, 22, 58, 0.3) 55%, rgba(6, 30, 72, 0.16) 100%);
+          z-index: 1;
+      }
+      #inicio > * { position: relative; z-index: 2; }
+      #inicio .inicio-corte {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -1px;
+          height: 72px;
+          z-index: 3;
+          background: #eef2f6;
+          clip-path: ellipse(68% 100% at 50% 100%);
+          pointer-events: none;
+      }
+      .corte {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -1px;
+          height: 72px;
+          z-index: 3;
+          pointer-events: none;
+          clip-path: ellipse(68% 100% at 50% 100%);
+      }
+      .corte-arriba {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: -1px;
+          height: 72px;
+          z-index: 3;
+          pointer-events: none;
+          background: #eef2f6;
+          clip-path: ellipse(68% 100% at 50% 0%);
+      }
+      #servicios { padding-top: 88px; padding-bottom: 72px; }
+      #quienes-somos {
+          padding-top: 140px;
+          padding-bottom: 120px;
+          background: #04101f;
+      }
+      #como-trabajamos {
+          background: linear-gradient(180deg, #e4eef6 0%, #e4eef6 42%, #f6f4f1 100%);
+      }
+      #contacto { padding-top: 96px; padding-bottom: 80px; background-color: #f6f4f1; }
+      .pie.pie { padding-top: 150px; padding-bottom: 96px; }
+      section:not(#inicio) { position: relative; }
+      #inicio .inicio-resplandor {
+          position: absolute;
+          left: -6%;
+          right: -6%;
+          bottom: 28px;
+          height: 90px;
+          z-index: 2;
+          background: radial-gradient(ellipse 68% 100% at 50% 100%, rgba(238, 242, 246, 0.95) 0%, rgba(238, 242, 246, 0.45) 46%, rgba(238, 242, 246, 0) 72%);
+          filter: blur(10px);
+          pointer-events: none;
+      }
+      @keyframes inicio-fondo {
+          0% { transform: scale(1.08) translate3d(3%, 1%, 0); }
+          100% { transform: scale(1.24) translate3d(-7%, -4%, 0); }
       }
       @media (prefers-reduced-motion: reduce) {
           #inicio::before { animation: none; }
       }
-      
-      .bg-alt { 
-          background-color: #EAF1FA;
-      } 
-      
-      .section-title { font-size: 3rem; margin-bottom: 15px; color: #1A2740; text-align: center; font-weight: 800;}
-      .highlight { color: #F26B1D; } 
-      .section-subtitle { color: #5C6B80; font-size: 1.2rem; margin-bottom: 50px; max-width: 600px; text-align: center; line-height: 1.6;}
+      #inicio h1 { color: #f6f4f1; }
+      #inicio .hero-text { color: #d5dee6; }
+      #inicio .badge {
+          background-color: rgba(197, 106, 50, 0.16);
+          color: #e4b184;
+          border: 1px solid rgba(224, 160, 106, 0.4);
+      }
+      #inicio .btn-secondary { color: #f6f4f1; border-color: rgba(246, 244, 241, 0.4); }
+      #inicio .btn-secondary:hover { border-color: #e0a06a; color: #e0a06a; }
+      #inicio .chat-mockup { border-color: rgba(255, 255, 255, 0.35); }
+
+      .section-title { font-size: 3.2rem; margin: 0 0 8px; color: #04101f; text-align: center; font-weight: 750; letter-spacing: -0.6px; }
+      .highlight { color: #c56a32; }
+      .section-subtitle { color: #04101f; font-size: 1.28rem; margin: 0 auto 16px; max-width: 760px; text-align: center; line-height: 1.5; }
 
       .plano {
           background-color: #ffffff;
-          border-radius: 18px;
-          border: 1px solid #E7DDD2;
-          box-shadow: 0 10px 28px rgba(26, 39, 64, 0.06);
+          border-radius: 14px;
+          border: 1px solid #e3e8ee;
       }
 
-      /* Hero (Inicio) */
-      .hero-container { display: flex; justify-content: space-between; align-items: center; gap: 50px; width: 100%; max-width: 1200px; }
-      .hero-content { flex: 1; max-width: 600px; }
-      
-      /* Badge sin brillos (Totalmente plano) */
-      .badge { 
-          display: inline-block; 
-          background-color: #FFF1E6;
-          color: #D85A12; 
-          padding: 8px 16px; 
-          border-radius: 20px; 
-          font-size: 0.75rem; 
-          letter-spacing: 1px; 
-          text-transform: uppercase; 
-          font-weight: 700; 
-          margin-bottom: 24px;
-          border: 1px solid #F26B1D;
+      .hero-container { display: flex; justify-content: space-between; align-items: center; gap: 56px; width: 100%; max-width: 1360px; }
+      .hero-content { flex: 1; max-width: 680px; }
+      .badge {
+          display: inline-block;
+          background-color: #f8efe6;
+          color: #c56a32;
+          padding: 7px 14px;
+          border-radius: 20px;
+          font-size: 0.72rem;
+          letter-spacing: 0.8px;
+          text-transform: uppercase;
+          font-weight: 700;
+          margin-bottom: 20px;
       }
-      
-      h1 { font-size: 4.5rem; margin: 0 0 24px 0; line-height: 1.05; color: #1A2740; letter-spacing: -1.5px;}
-      p.hero-text { color: #3E4C63; font-size: 1.15rem; line-height: 1.7; margin-bottom: 40px; }
-      
-      .buttons { display: flex; gap: 20px; }
-      .btn { padding: 14px 28px; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.2s; font-size: 1rem; border: none; cursor: pointer; display: inline-block;}
-      
-      .btn-primary { 
-          background-color: #F26B1D; 
-          color: #ffffff; 
-      }
-      .btn-primary:hover { 
-          background-color: #D85A12; 
-          transform: translateY(-2px); 
-      }
-      
-      .btn-secondary { color: #1E4D8C; background: transparent; border: 2px solid #1E4D8C;}
-      .btn-secondary:hover { border-color: #F26B1D; color: #F26B1D; background: rgba(242, 107, 29, 0.06);}
-      
-      .btn-whatsapp { background-color: #25D366; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; width: fit-content; border: none;}
-      .btn-whatsapp:hover { background-color: #1ebe57; transform: translateY(-2px);}
+      h1 { font-size: clamp(2.6rem, 5vw, 4.4rem); margin: 0 0 12px; line-height: 1.05; color: #04101f; letter-spacing: -1.2px; }
+      p.hero-text { color: #04101f; font-size: 1.28rem; line-height: 1.55; margin-bottom: 18px; }
 
-      /* Chat Mockup en Fondo Blanco */
-      .chat-mockup { 
-          flex: 1; 
-          padding: 30px; 
-          max-width: 450px; 
+      .buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+      .btn { padding: 16px 30px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 1.12rem; border: none; cursor: pointer; display: inline-block; }
+      .btn-primary { background-color: #04101f; color: #f6f4f1; }
+      .btn-primary:hover { background-color: #04101f; }
+      #inicio .btn-primary { background-color: #04101f; color: #f6f4f1; }
+      .btn-secondary { color: #04101f; background: transparent; border: 1px solid #c5d0db; }
+      .btn-secondary:hover { border-color: #c56a32; color: #c56a32; }
+      .btn-whatsapp { background-color: #1f8f4e; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; width: fit-content; }
+      .btn-whatsapp:hover { background-color: #187a42; }
+
+      .chat-mockup {
+          flex: 1;
+          padding: 26px;
+          max-width: 520px;
           background-color: #ffffff;
-          border-radius: 28px;
-          border: 2px solid #1E4D8C;
-          box-shadow: 0 0 0 6px rgba(242, 107, 29, 0.16);
+          border-radius: 16px;
+          border: 1px solid #e3e8ee;
       }
-      .chat-header { font-size: 0.85rem; color: #1E4D8C; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
-      .dot { width: 10px; height: 10px; background-color: #F26B1D; border-radius: 50%; display: inline-block;}
-      .chat-bubble { padding: 16px 20px; border-radius: 16px; margin-bottom: 16px; font-size: 0.95rem; line-height: 1.5; }
-      
-      .chat-bubble.left { 
-          background-color: #EAF1FA;
-          color: #1A2740;
-          margin-right: 40px; 
-          border-bottom-left-radius: 4px; 
-          border: none;
-      }
-      .chat-bubble.right { 
-          background-color: #F26B1D; 
-          color: #ffffff;
-          margin-left: 40px; 
-          border-bottom-right-radius: 4px; 
-          font-weight: 600; 
-          border: none;
-      }
+      .chat-header { font-size: 0.76rem; color: #04101f; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; }
+      .dot { width: 8px; height: 8px; background-color: #c56a32; border-radius: 50%; display: inline-block; }
+      .chat-bubble { padding: 16px 18px; border-radius: 14px; margin-bottom: 14px; font-size: 1.05rem; line-height: 1.5; }
+      .chat-bubble.left { background-color: #eef2f6; color: #04101f; margin-right: 36px; border-bottom-left-radius: 4px; }
+      .chat-bubble.right { background-color: #c56a32; color: #fffaf6; margin-left: 36px; border-bottom-right-radius: 4px; font-weight: 600; }
 
-      /* Servicios */
-      .services-container { max-width: 1200px; width: 100%; }
-      .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px;}
-      .service-card { padding: 40px; transition: transform 0.2s; }
-      .service-card:hover { transform: translateY(-4px); }
-      .service-card h3 { color: #1A2740; margin-top: 0; font-size: 1.5rem; margin-bottom: 15px;}
-      .service-card p { margin-bottom: 0; font-size: 1.05rem; color: #5C6B80; line-height: 1.7;}
+      .services-container, .quienes-somos-container, .proceso-container { max-width: 1360px; width: 100%; }
+      .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+      .servicios-ui { display: grid; grid-template-columns: 280px 1fr; gap: 22px; align-items: stretch; }
+      .servicios-lista { position: relative; display: flex; flex-direction: column; gap: 10px; padding-left: 22px; }
+      .servicio-tab { position: relative; transition: border-color 0.8s ease, background 0.8s ease; }
+      .servicio-tab {
+          text-align: left;
+          padding: 18px 18px;
+          border-radius: 14px;
+          border: 1px solid #e3e8ee;
+          background: #eef2f6;
+          color: #04101f;
+          font: inherit;
+          font-size: 1.12rem;
+          font-weight: 650;
+          cursor: pointer;
+      }
+      .servicio-tab span { display: block; margin-bottom: 4px; color: #c56a32; font-size: 0.78rem; letter-spacing: 0.6px; }
+      .servicio-tab.is-active { border-color: #04101f; }
+      .servicio-tab.is-active span { color: #e4b184; }
+      .servicio-panel { padding: 40px 36px; min-height: 240px; }
+      .servicio-panel h3 { margin: 0 0 14px; font-size: 2rem; color: #04101f; }
+      .servicio-panel p { margin: 0; font-size: 1.2rem; line-height: 1.65; color: #04101f; }
+      .service-card { padding: 36px 32px; }
+      .service-card h3 { color: #04101f; margin: 0 0 12px; font-size: 1.5rem; }
+      .service-card p { margin: 0; font-size: 1.15rem; color: #04101f; line-height: 1.6; }
 
-      /* Quiénes Somos */
-      .quienes-somos-container { max-width: 1200px; width: 100%; }
-      .quienes-somos-content { display: flex; gap: 60px; align-items: center; margin-top: 20px;}
+      #quienes-somos { background-color: #04101f; }
+      #quienes-somos .section-title { color: #f6f4f1; }
+      #quienes-somos .section-subtitle { color: #d5e2ee; }
+      #quienes-somos .quienes-somos-text p { color: #e4ebf2; }
+      .quienes-somos-content { display: flex; gap: 48px; align-items: center; }
       .quienes-somos-text { flex: 1.5; }
-      .quienes-somos-stats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-      .stat { padding: 30px 20px; text-align: center; }
-      .stat-number { display: block; font-size: 3rem; font-weight: 800; color: #F26B1D; margin-bottom: 5px; line-height: 1;}
-      .stat-label { color: #1E4D8C; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
-      .quienes-somos-text p { color: #3E4C63; font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px; }
+      .quienes-somos-text p { color: #04101f; font-size: 1.22rem; line-height: 1.55; margin: 0 0 10px; }
+      .quienes-somos-stats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .stat { padding: 28px 18px; text-align: center; }
+      .stat-number { display: block; font-size: 2.3rem; font-weight: 750; color: #c56a32; margin-bottom: 8px; line-height: 1; }
+      .stat-label { color: #04101f; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
-      /* Contacto */
-      .contacto-container { max-width: 1200px; width: 100%; display: flex; gap: 60px; align-items: center;}
+      .pasos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; width: 100%; }
+      .paso { padding: 28px 22px; }
+      .paso-num { color: #c56a32; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.7px; }
+      .paso h3 { color: #04101f; margin: 10px 0; font-size: 1.28rem; }
+      .paso p { margin: 0; color: #04101f; font-size: 1.08rem; line-height: 1.55; }
+
+      .contacto-container { max-width: 1360px; width: 100%; display: flex; gap: 56px; align-items: center; }
       .contacto-info { flex: 1; }
-      .contacto-form { flex: 1; padding: 45px; width: 100%; box-sizing: border-box;}
-      
-      .form-group { margin-bottom: 25px; text-align: left; }
-      .form-group label { display: block; margin-bottom: 10px; font-weight: 600; font-size: 0.95rem; color: #1A2740;}
-      .form-control { 
-          width: 100%; 
-          padding: 16px; 
-          border: 1px solid #D5DEEA; 
-          border-radius: 12px; 
-          font-size: 1rem; 
-          font-family: inherit; 
-          box-sizing: border-box; 
-          background-color: #ffffff;
-          color: #1A2740;
-          transition: all 0.2s;
+      .contacto-form { flex: 1; padding: 32px; width: 100%; box-sizing: border-box; }
+      .form-group { margin-bottom: 16px; text-align: left; }
+      .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 1.05rem; color: #04101f; }
+      .form-control {
+          width: 100%;
+          padding: 16px;
+          border: 1px solid #d5dee6;
+          border-radius: 10px;
+          font-size: 1.08rem;
+          font-family: inherit;
+          box-sizing: border-box;
+          background-color: #fbfaf8;
+          color: #04101f;
       }
-      .form-control:focus { outline: none; border-color: #F26B1D; box-shadow: 0 0 0 3px rgba(30, 77, 140, 0.15); }
-      .form-control::placeholder { color: #8A94A6; }
-      textarea.form-control { resize: vertical; min-height: 130px; }
-      
-      .opciones-contacto { display: flex; flex-direction: column; gap: 15px; align-items: flex-start; margin-top: 35px; padding-top: 35px; border-top: 1px solid #D5DEEA;}
+      .form-control:focus { outline: none; border-color: #c56a32; }
+      .form-control::placeholder { color: #04101f; }
+      textarea.form-control { resize: vertical; min-height: 120px; }
+      .opciones-contacto { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; margin-top: 24px; padding-top: 22px; border-top: 1px solid #e3e8ee; }
+      .opciones-contacto p { margin: 0; font-weight: 600; color: #04101f; }
+
+      .contacto-info .section-title,
+      .contacto-info .section-subtitle { text-align: left; }
+      .contacto-info .section-subtitle { margin-bottom: 16px; }
+      .wa-flotante {
+          position: fixed;
+          right: 22px;
+          bottom: 22px;
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          background: #25D366;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 220;
+          box-shadow: 0 8px 18px rgba(6, 16, 24, 0.22);
+      }
+      .wa-flotante.is-hidden { display: none; }
+      .wa-flotante:hover { background: #1ebe57; }
+      .wa-flotante svg { display: block; width: 36px; height: 36px; }
+      .pie {
+          position: relative;
+          background: #04101f;
+          color: #d5e2ee;
+          padding: 36px 36px 28px;
+          box-sizing: border-box;
+      }
+      .pie-inner {
+          max-width: 1360px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          gap: 40px;
+          flex-wrap: wrap;
+      }
+      .pie .corte-arriba { background: #f6f4f1; }
+      .pie-marca { font-size: 1.35rem; font-weight: 750; color: #f6f4f1; margin: 0 0 8px; }
+      .pie p { margin: 0 0 8px; max-width: 420px; line-height: 1.5; }
+      .pie a { color: #e4ebf2; text-decoration: none; }
+      .pie a:hover { color: #c56a32; }
+      .pie-links { display: flex; flex-direction: column; gap: 8px; }
+      .pie-copy { max-width: 1360px; margin: 22px auto 0; padding-top: 16px; border-top: 1px solid rgba(246, 244, 241, 0.16); color: #04101f; font-size: 0.95rem; }
+      .cartel {
+          position: fixed;
+          inset: 0;
+          z-index: 400;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+          background: rgba(6, 16, 24, 0.46);
+      }
+      .cartel[hidden] { display: none; }
+      .cartel-caja {
+          width: 100%;
+          max-width: 440px;
+          padding: 32px 28px;
+          border-radius: 16px;
+          background: #f7f5f2;
+          color: #04101f;
+          text-align: center;
+      }
+      .cartel-caja h2 { margin: 0 0 12px; font-size: 1.7rem; }
+      .cartel-caja p { margin: 0 0 22px; color: #04101f; line-height: 1.6; font-size: 1.05rem; }
+
+      @media (max-width: 980px) {
+          .pasos { grid-template-columns: 1fr 1fr; }
+          .hero-container { gap: 28px; }
+      }
+      @media (max-width: 760px) {
+          .navbar { height: auto; min-height: 84px; padding: 14px 16px; flex-wrap: wrap; }
+          .nav-toggle { display: block; }
+          .pie { padding: 32px 16px 24px; }
+          .pie-inner { flex-direction: column; gap: 22px; }
+          .links {
+              display: none;
+              width: 100%;
+              padding: 4px 0 10px;
+          }
+          .navbar.is-open .links { display: flex; flex-direction: column; }
+          .navbar.is-open .nav-inicio.is-visible { display: block; }
+          .links a { margin: 0; padding: 14px 4px; font-size: 1.15rem; }
+          .links a.nav-contacto { display: inline-block; width: fit-content; margin: 8px 0 4px; padding: 12px 18px; }
+          section { min-height: 0; padding: 140px 16px 120px; }
+          #inicio { min-height: 0; padding: 88px 16px 120px; }
+          .section-title { font-size: 2.15rem; }
+          .section-subtitle { font-size: 1.08rem; margin-bottom: 22px; }
+          .hero-container, .quienes-somos-content, .contacto-container, .servicios-ui { flex-direction: column; align-items: stretch; gap: 22px; }
+          .servicios-ui { display: flex; }
+          .chat-mockup { max-width: none; padding: 18px; }
+          .chat-bubble.left { margin-right: 18px; }
+          .chat-bubble.right { margin-left: 18px; }
+          .buttons .btn, .btn-whatsapp { width: 100%; box-sizing: border-box; text-align: center; }
+          .pasos, .quienes-somos-stats { grid-template-columns: 1fr; }
+          .contacto-info .section-title,
+          .contacto-info .section-subtitle { text-align: center; }
+          .opciones-contacto { align-items: stretch; }
+          .service-card, .paso, .contacto-form { padding: 20px 16px; }
+      }
   </style>
 </head>
 <body>
 
-    <!-- BARRA DE NAVEGACIÓN -->
     <nav class="navbar">
-        <a href="#inicio" class="logo">
-            &lt;&gt; NyN Solutions
-        </a>
+        <a href="#inicio" class="logo">&lt;&gt; NyN Solutions</a>
+        <button type="button" class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
         <div class="links">
             <a href="#inicio" class="nav-inicio" aria-hidden="true" tabindex="-1">Inicio</a>
             <a href="#servicios">Servicios</a>
             <a href="#quienes-somos">Quiénes somos</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#como-trabajamos">Cómo trabajamos</a>
+            <a href="#contacto" class="nav-contacto">Contactanos</a>
         </div>
     </nav>
 
-    <!-- 1. INICIO -->
     <section id="inicio">
         <div class="hero-container">
             <div class="hero-content">
-                <!-- Se cambió la clase a 'badge' plano -->
                 <span class="badge">Desarrollo a tu medida</span>
                 <h1>Software que hace <span class="highlight">crecer</span> tu negocio.</h1>
                 <p class="hero-text">Diseñamos y desarrollamos páginas web, tiendas online y sistemas a medida. Trabajás directo con el equipo que construye tu proyecto, de principio a fin, sin intermediarios.</p>
@@ -249,8 +426,6 @@
                     <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
                 </div>
             </div>
-
-            <!-- Chat con fondo blanco -->
             <div class="chat-mockup">
                 <div class="chat-header">
                     <span class="dot"></span> Así empieza tu proyecto
@@ -261,38 +436,31 @@
                 <div class="chat-bubble right">Perfecto. Te armamos una propuesta a medida con tiempos y costos cerrados.</div>
             </div>
         </div>
+        <div class="inicio-corte" aria-hidden="true"></div>
     </section>
 
-    <!-- 2. SERVICIOS -->
     <section id="servicios" class="bg-alt">
         <div class="services-container">
             <h2 class="section-title">Qué <span class="highlight">hacemos</span></h2>
-            <p class="section-subtitle" style="margin: 0 auto 50px auto;">Soluciones tecnológicas modernas, rápidas y pensadas para escalar con tu negocio.</p>
-            
-            <div class="services-grid">
-                <!-- Cajas con clase 'plano' -->
-                <div class="service-card plano">
-                    <h3>Desarrollo Web</h3>
-                    <p>Landing pages y sitios institucionales ultra rápidos, optimizados para Google y adaptados a cualquier celular o pantalla.</p>
+            <p class="section-subtitle" style="margin: 0 auto 16px auto;">Soluciones tecnológicas modernas, rápidas y pensadas para escalar con tu negocio.</p>
+            <div class="servicios-ui">
+                <div class="servicios-lista" role="tablist" aria-label="Servicios">
+                    <button type="button" class="servicio-tab is-active" role="tab" aria-selected="true" data-servicio="web"><span>01</span>Desarrollo Web</button>
+                    <button type="button" class="servicio-tab" role="tab" aria-selected="false" data-servicio="tienda"><span>02</span>E-Commerce</button>
+                    <button type="button" class="servicio-tab" role="tab" aria-selected="false" data-servicio="software"><span>03</span>Software a Medida</button>
                 </div>
-                <div class="service-card plano">
-                    <h3>E-Commerce</h3>
-                    <p>Tiendas online completas, seguras y fáciles de autogestionar para que empieces a vender las 24 horas sin fricciones.</p>
-                </div>
-                <div class="service-card plano">
-                    <h3>Software a Medida</h3>
-                    <p>Sistemas internos, automatizaciones y herramientas de gestión diseñadas exactamente para los procesos de tu empresa.</p>
+                <div class="servicio-panel plano" aria-live="polite">
+                    <h3 id="servicio-titulo">Desarrollo Web</h3>
+                    <p id="servicio-texto">Landing pages y sitios institucionales ultra rápidos, optimizados para Google y adaptados a cualquier celular o pantalla.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. QUIÉNES SOMOS -->
     <section id="quienes-somos">
         <div class="quienes-somos-container">
             <h2 class="section-title">Quiénes <span class="highlight">somos</span></h2>
-            <p class="section-subtitle" style="margin: 0 auto 50px auto;">Un equipo comprometido con la calidad técnica y el éxito de tus ideas.</p>
-            
+            <p class="section-subtitle" style="margin: 0 auto 16px auto;">Un equipo comprometido con la calidad técnica y el éxito de tus ideas.</p>
             <div class="quienes-somos-content">
                 <div class="quienes-somos-text">
                     <p>Somos desarrolladores apasionados por crear tecnología que funcione perfecto y se vea increíble. No usamos plantillas aburridas ni soluciones genéricas; escribimos código a medida porque creemos que cada negocio tiene necesidades únicas.</p>
@@ -316,22 +484,48 @@
         </div>
     </section>
 
-    <!-- 4. CONTACTO -->
-    <section id="contacto" class="bg-alt">
+    <section id="como-trabajamos">
+        <div class="proceso-container">
+            <h2 class="section-title">Cómo <span class="highlight">trabajamos</span></h2>
+            <p class="section-subtitle" style="margin: 0 auto 16px auto;">Cuatro pasos. El alcance y el costo se cierran antes de arrancar.</p>
+            <div class="pasos">
+                <div class="paso plano">
+                    <span class="paso-num">01</span>
+                    <h3>Escuchamos</h3>
+                    <p>Una charla corta para entender qué vendés y qué necesitás. Sin un formulario eterno.</p>
+                </div>
+                <div class="paso plano">
+                    <span class="paso-num">02</span>
+                    <h3>Cerramos la propuesta</h3>
+                    <p>Alcance, tiempos y costo por escrito. Si no cierra, no se escribe una línea.</p>
+                </div>
+                <div class="paso plano">
+                    <span class="paso-num">03</span>
+                    <h3>Construimos a la vista</h3>
+                    <p>Ves avances sobre lo que existe. Las correcciones se hacen ahí, no en un PDF.</p>
+                </div>
+                <div class="paso plano">
+                    <span class="paso-num">04</span>
+                    <h3>Entregamos</h3>
+                    <p>Queda en tus manos, con lo justo para administrarlo. Si hace falta un ajuste, seguimos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
         <div class="contacto-container">
             <div class="contacto-info">
-                <h2 class="section-title" style="text-align: left;">¿Listo para <span class="highlight">empezar</span>?</h2>
-                <p class="section-subtitle" style="text-align: left; margin-bottom: 20px;">Dejanos tus datos o escribinos directo. Te respondemos rápido para coordinar una reunión y evaluar tu proyecto sin compromiso.</p>
-                
+                <h2 class="section-title">¿Listo para <span class="highlight">empezar</span>?</h2>
+                <p class="section-subtitle">Dejanos tus datos o escribinos directo. Te respondemos rápido para coordinar una reunión y evaluar tu proyecto sin compromiso.</p>
                 <div class="opciones-contacto">
-                    <p style="margin:0; font-weight: 600; color:#1A2740;">¿Preferís un trato más rápido?</p>
-                    <a href="https://wa.me/1234567890" target="_blank" class="btn-whatsapp btn">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    <p>¿Preferís un trato más rápido?</p>
+                    <a href="https://wa.me/542494371168" target="_blank" class="btn-whatsapp btn">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.04 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L0 24l6.3-1.65a11.9 11.9 0 0 0 5.73 1.46h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.41-8.43zM12.04 21.8h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.74.98 1-3.64-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.9-9.89 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.46-4.44 9.88-9.88 9.88zm5.42-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/></svg>
                         Escribinos por WhatsApp
                     </a>
                 </div>
             </div>
-
             <form class="contacto-form plano" action="/enviar" method="POST">
                 <div class="form-group">
                     <label for="nombre">Nombre completo</label>
@@ -345,53 +539,115 @@
                     <label for="mensaje">¿De qué trata tu proyecto?</label>
                     <textarea id="mensaje" name="mensaje" class="form-control" placeholder="Contanos brevemente qué necesitás..." required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 16px;">Enviar mensaje</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar mensaje</button>
             </form>
         </div>
     </section>
+
+    <footer class="pie">
+        <div class="corte-arriba" aria-hidden="true"></div>
+        <div class="pie-inner">
+            <div>
+                <p class="pie-marca">&lt;&gt; NyN Solutions</p>
+                <p>Desarrollo web, tiendas online y software a medida. Trabajás directo con el equipo que construye tu proyecto.</p>
+            </div>
+            <nav class="pie-links" aria-label="Pie de página">
+                <a href="#servicios">Servicios</a>
+                <a href="#quienes-somos">Quiénes somos</a>
+                <a href="#como-trabajamos">Cómo trabajamos</a>
+                <a href="#contacto">Contacto</a>
+                <a href="https://wa.me/542494371168" target="_blank" rel="noopener">WhatsApp +54 249 437-1168</a>
+            </nav>
+        </div>
+        <p class="pie-copy">NyN Solutions. Páginas web, tiendas y sistemas a medida.</p>
+    </footer>
+
+    <a class="wa-flotante" href="https://wa.me/542494371168" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.04 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L0 24l6.3-1.65a11.9 11.9 0 0 0 5.73 1.46h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.41-8.43zM12.04 21.8h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.74.98 1-3.64-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.9-9.89 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.46-4.44 9.88-9.88 9.88zm5.42-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/></svg>
+    </a>
+
+    <div class="cartel" id="cartel-gracias" hidden>
+        <div class="cartel-caja" role="dialog" aria-modal="true" aria-labelledby="cartel-titulo">
+            <h2 id="cartel-titulo">Gracias por contactarte</h2>
+            <p>El mensaje no se envió a ningún lado: el formulario todavía no está conectado. Si querés respuesta ya, escribinos por WhatsApp.</p>
+            <button type="button" class="btn btn-primary" id="cartel-cerrar">Listo</button>
+        </div>
+    </div>
 
     <div id="scroll-spacer" aria-hidden="true"></div>
 
     <script>
       (function () {
         var inicio = document.getElementById("inicio");
+        var contacto = document.getElementById("contacto");
+        var pie = document.querySelector(".pie");
         var inicioLink = document.querySelector("a.nav-inicio");
+        var wa = document.querySelector(".wa-flotante");
         var nav = document.querySelector(".navbar");
         var spacer = document.getElementById("scroll-spacer");
+        var toggle = document.querySelector(".nav-toggle");
+
+        function cerrarMenu() {
+          if (!nav) return;
+          nav.classList.remove("is-open");
+          if (toggle) {
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.setAttribute("aria-label", "Abrir menú");
+          }
+        }
+
+        if (toggle) {
+          toggle.addEventListener("click", function () {
+            var abierto = nav.classList.toggle("is-open");
+            toggle.setAttribute("aria-expanded", abierto ? "true" : "false");
+            toggle.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
+          });
+        }
 
         function navHeight() {
           return nav ? nav.offsetHeight : 0;
         }
 
-        function inicioEnPantalla() {
-          if (!inicio) return true;
-          var rect = inicio.getBoundingClientRect();
+        function seccionEnPantalla(section) {
+          if (!section) return false;
+          var rect = section.getBoundingClientRect();
           return rect.bottom > navHeight() + 1 && rect.top < window.innerHeight;
+        }
+
+        function inicioEnPantalla() {
+          return seccionEnPantalla(inicio);
+        }
+
+        function actualizarWhatsapp() {
+          if (!wa) return;
+          var top = contacto.getBoundingClientRect().top;
+          wa.classList.toggle("is-hidden", top < navHeight() + 8);
         }
 
         function actualizarIndiceInicio() {
           if (!inicioLink) return;
-          var visible = !inicioEnPantalla();
+          var visible = window.scrollY >= document.getElementById("servicios").offsetTop - navHeight() - 40;
           inicioLink.classList.toggle("is-visible", visible);
           inicioLink.setAttribute("aria-hidden", visible ? "false" : "true");
           inicioLink.tabIndex = visible ? 0 : -1;
         }
 
         function centrarSeccion(section) {
-          var navH = navHeight();
-          var centroVisible = navH + (window.innerHeight - navH) / 2;
-          var centroSeccion = section.getBoundingClientRect().top + window.scrollY + section.offsetHeight / 2;
-          var destino = centroSeccion - centroVisible;
-          if (destino < 0) destino = 0;
-
-          var spacerH = spacer ? spacer.offsetHeight : 0;
-          var naturalMax = document.documentElement.scrollHeight - spacerH - window.innerHeight;
-          if (spacer) spacer.style.height = Math.max(0, destino - naturalMax) + "px";
-          window.scrollTo({ top: destino, behavior: "smooth" });
+          cerrarMenu();
+          if (spacer) spacer.style.height = "0px";
+          var ajuste = section.id === "servicios" ? -40 : section.id === "quienes-somos" ? -30 : 0;
+          var base = section.id === "inicio"
+            ? 0
+            : section.getBoundingClientRect().top + window.scrollY - navHeight() + ajuste;
+          var naturalMax = document.documentElement.scrollHeight - window.innerHeight;
+          var destino = Math.max(0, base);
+          if (spacer && destino > naturalMax) spacer.style.height = (destino - naturalMax) + "px";
+          window.scrollTo({ top: destino, behavior: "instant" });
         }
 
-        document.querySelectorAll(".links a[href^='#']").forEach(function (link) {
+        document.querySelectorAll("a[href^='#']").forEach(function (link) {
           link.addEventListener("click", function (event) {
+            if (link.target === "_blank") return;
             var id = link.getAttribute("href").slice(1);
             var section = document.getElementById(id);
             if (!section) return;
@@ -401,15 +657,101 @@
           });
         });
 
+        var form = document.querySelector(".contacto-form");
+        var cartel = document.getElementById("cartel-gracias");
+        var cerrarCartel = document.getElementById("cartel-cerrar");
+        if (form && cartel) {
+          form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            if (!form.checkValidity()) {
+              form.reportValidity();
+              return;
+            }
+            form.reset();
+            cartel.hidden = false;
+          });
+          cerrarCartel.addEventListener("click", function () { cartel.hidden = true; });
+          cartel.addEventListener("click", function (event) {
+            if (event.target === cartel) cartel.hidden = true;
+          });
+        }
+
+        var textos = {
+          web: ["Desarrollo Web", "Landing pages y sitios institucionales ultra rápidos, optimizados para Google y adaptados a cualquier celular o pantalla."],
+          tienda: ["E-Commerce", "Tiendas online completas, seguras y fáciles de autogestionar para que empieces a vender las 24 horas sin fricciones."],
+          software: ["Software a Medida", "Sistemas internos, automatizaciones y herramientas de gestión diseñadas exactamente para los procesos de tu empresa."]
+        };
+        var tituloServicio = document.getElementById("servicio-titulo");
+        var textoServicio = document.getElementById("servicio-texto");
+        var tabs = Array.prototype.slice.call(document.querySelectorAll(".servicio-tab"));
+        var indice = 0;
+        var andando = false;
+        var llegada = null;
+
+        function marcar(i) {
+          var tab = tabs[i];
+          var dato = textos[tab.getAttribute("data-servicio")];
+          tabs.forEach(function (otro) {
+            otro.classList.remove("is-active");
+            otro.setAttribute("aria-selected", "false");
+          });
+          tab.classList.add("is-active");
+          tab.setAttribute("aria-selected", "true");
+          tituloServicio.textContent = dato[0];
+          textoServicio.textContent = dato[1];
+        }
+
+        function completar(i) {
+          indice = i;
+          marcar(i);
+          clearTimeout(llegada);
+          llegada = setTimeout(function () {
+            if (andando) completar((i + 1) % tabs.length);
+          }, 8000);
+        }
+
+        function arrancar(desde) {
+          andando = true;
+          completar(desde);
+        }
+
+        tabs.forEach(function (tab, i) {
+          tab.addEventListener("click", function () {
+            andando = false;
+            clearTimeout(llegada);
+            tabs.forEach(function (otro) { otro.classList.remove("girando"); });
+            marcar(i);
+            clearTimeout(pausa);
+            pausa = setTimeout(function () { arrancar(i); }, 60000);
+          });
+        });
+
+        var pausa = null;
+        window.addEventListener("scroll", function () {
+          var rect = document.getElementById("servicios").getBoundingClientRect();
+          if (rect.bottom < navHeight() || rect.top > window.innerHeight) {
+            clearTimeout(pausa);
+            pausa = null;
+            andando = false;
+            clearTimeout(llegada);
+            marcar(0);
+            arrancar(0);
+          }
+        }, { passive: true });
+
+        marcar(0);
+        setTimeout(function () { arrancar(0); }, 600);
+
         window.addEventListener("scroll", actualizarIndiceInicio, { passive: true });
+        window.addEventListener("scroll", actualizarWhatsapp, { passive: true });
         window.addEventListener("resize", actualizarIndiceInicio);
+        window.addEventListener("resize", actualizarWhatsapp);
         actualizarIndiceInicio();
+        actualizarWhatsapp();
 
         if (location.hash) {
           var inicial = document.getElementById(location.hash.slice(1));
-          if (inicial) {
-            requestAnimationFrame(function () { centrarSeccion(inicial); });
-          }
+          if (inicial) requestAnimationFrame(function () { centrarSeccion(inicial); });
         }
       })();
     </script>
