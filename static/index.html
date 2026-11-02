@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NyN Solutions - Desarrollo Web y Software a Medida</title>
+  <title>sinter - Desarrollo Web y Software a Medida</title>
   <style>
       html { scroll-behavior: smooth; }
       body {
@@ -28,7 +28,8 @@
           z-index: 100;
           box-sizing: border-box;
       }
-      .logo { font-weight: 800; font-size: 1.55rem; letter-spacing: -0.3px; color: #04101f; text-decoration: none; }
+      .logo { display: flex; align-items: center; gap: 4px; font-weight: 800; font-size: 3.05rem; line-height: 1; letter-spacing: -0.6px; color: #04101f; text-decoration: none; }
+      .logo img { height: 62px; width: auto; display: block; }
       .nav-toggle {
           display: none;
           width: 42px;
@@ -84,7 +85,7 @@
           position: relative;
           overflow: hidden;
           min-height: 0;
-          padding: 112px 36px 140px;
+          padding: 158px 36px 204px;
           background-color: #04101f;
           color: #f6f4f1;
       }
@@ -167,6 +168,7 @@
       }
       @media (prefers-reduced-motion: reduce) {
           #inicio::before { animation: none; }
+          .hero-devices, .hero-devices-escena { animation: none; }
       }
       #inicio h1 { color: #f6f4f1; }
       #inicio .hero-text { color: #d5dee6; }
@@ -177,11 +179,10 @@
       }
       #inicio .btn-secondary { color: #f6f4f1; border-color: rgba(246, 244, 241, 0.4); }
       #inicio .btn-secondary:hover { border-color: #e0a06a; color: #e0a06a; }
-      #inicio .chat-mockup { border-color: rgba(255, 255, 255, 0.35); }
 
-      .section-title { font-size: 3.2rem; margin: 0 0 8px; color: #04101f; text-align: center; font-weight: 750; letter-spacing: -0.6px; }
+      .section-title { font-size: 2.55rem; margin: 0 0 8px; color: #04101f; text-align: center; font-weight: 750; letter-spacing: -0.6px; }
       .highlight { color: #c56a32; }
-      .section-subtitle { color: #04101f; font-size: 1.28rem; margin: 0 auto 16px; max-width: 760px; text-align: center; line-height: 1.5; }
+      .section-subtitle { color: #04101f; font-size: 1.12rem; margin: 0 auto 16px; max-width: 760px; text-align: center; line-height: 1.5; }
 
       .plano {
           background-color: #ffffff;
@@ -203,7 +204,7 @@
           font-weight: 700;
           margin-bottom: 20px;
       }
-      h1 { font-size: clamp(2.6rem, 5vw, 4.4rem); margin: 0 0 12px; line-height: 1.05; color: #04101f; letter-spacing: -1.2px; }
+      h1 { font-size: clamp(2.15rem, 4vw, 3.4rem); margin: 0 0 12px; line-height: 1.05; color: #04101f; letter-spacing: -1.2px; }
       p.hero-text { color: #04101f; font-size: 1.28rem; line-height: 1.55; margin-bottom: 18px; }
 
       .buttons { display: flex; gap: 14px; flex-wrap: wrap; }
@@ -216,43 +217,262 @@
       .btn-whatsapp { background-color: #1f8f4e; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; width: fit-content; }
       .btn-whatsapp:hover { background-color: #187a42; }
 
-      .chat-mockup {
-          flex: 1;
-          padding: 26px;
-          max-width: 520px;
-          background-color: #ffffff;
-          border-radius: 16px;
-          border: 1px solid #e3e8ee;
+      .hero-devices {
+          position: relative;
+          flex: 1.2;
+          max-width: none;
+          width: auto;
+          min-height: 0;
+          margin: 0;
+          padding: 0;
+          background: transparent;
+          border: none;
+          box-shadow: none;
+          overflow: visible;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
       }
-      .chat-header { font-size: 0.76rem; color: #04101f; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; }
-      .dot { width: 8px; height: 8px; background-color: #c56a32; border-radius: 50%; display: inline-block; }
-      .chat-bubble { padding: 16px 18px; border-radius: 14px; margin-bottom: 14px; font-size: 1.05rem; line-height: 1.5; }
-      .chat-bubble.left { background-color: #eef2f6; color: #04101f; margin-right: 36px; border-bottom-left-radius: 4px; }
-      .chat-bubble.right { background-color: #c56a32; color: #fffaf6; margin-left: 36px; border-bottom-right-radius: 4px; font-weight: 600; }
+      .hero-devices-escena {
+          position: relative;
+          z-index: 1;
+          width: min(100%, 560px);
+          height: 430px;
+          margin-left: auto;
+      }
+      .laptop { width: 100%; max-width: 500px; position: relative; z-index: 1; }
+      .laptop-lid {
+          background: #111;
+          border-radius: 14px;
+          padding: 8px;
+      }
+      .laptop-screen {
+          height: 290px;
+          overflow: hidden;
+          border-radius: 8px;
+          background: #c56a32;
+      }
+      .laptop-chin {
+          height: 16px;
+          margin: 0 22px;
+          background: #111;
+          border-radius: 0 0 10px 10px;
+      }
+      .phone {
+          position: absolute;
+          right: 0;
+          bottom: 8px;
+          z-index: 2;
+          width: 176px;
+          height: 340px;
+          padding: 7px;
+          box-sizing: border-box;
+          background: #111;
+          border-radius: 28px;
+      }
+      .phone-screen {
+          height: 100%;
+          overflow: hidden;
+          border-radius: 20px;
+          background: #c56a32;
+      }
+      .catalogo {
+          height: 100%;
+          box-sizing: border-box;
+          padding: 10px 12px;
+          background: #c56a32;
+          color: #fffaf6;
+          font-family: system-ui, sans-serif;
+      }
+      .catalogo-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 8px;
+          font-size: 12px;
+          font-weight: 750;
+          letter-spacing: 0.04em;
+      }
+      .catalogo-top span { font-size: 8px; font-weight: 600; letter-spacing: 0.06em; color: #f8efe6; }
+      .catalogo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+      .pieza { background: rgba(255, 250, 246, 0.16); border-radius: 7px; overflow: hidden; }
+      .pieza i {
+          position: relative;
+          display: block;
+          height: 58px;
+          background: rgba(255, 250, 246, 0.22);
+      }
+      .pieza i::before {
+          content: "S";
+          position: absolute;
+          left: 5px;
+          bottom: 5px;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: #fffaf6;
+          color: #c56a32;
+          font-style: normal;
+          font-size: 9px;
+          font-weight: 800;
+          line-height: 16px;
+          text-align: center;
+      }
+      .pieza b { display: block; padding: 4px 5px 0; font-size: 8px; }
+      .pieza em { display: block; padding: 1px 5px 5px; font-style: normal; font-size: 7px; color: #f8efe6; }
+      .tono-1 i::before { content: "N"; }
+      .tono-2 i::before { content: "A"; }
+      .tono-3 i::before { content: "K"; }
+      .tono-4 i::before { content: "M"; }
+      .tono-5 i::before { content: "L"; }
+      .tono-6 i::before { content: "V"; }
+      .tienda { height: 100%; color: #fffaf6; font-family: system-ui, sans-serif; }
+      .tienda-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 12px 8px;
+          font-size: 11px;
+          letter-spacing: 0.22em;
+          font-weight: 700;
+      }
+      .tienda-top span { letter-spacing: 0.04em; font-weight: 500; font-size: 9px; color: #f8efe6; }
+      .tienda-hero { display: flex; gap: 10px; padding: 0 12px; }
+      .prenda {
+          position: relative;
+          width: 118px;
+          height: 132px;
+          border-radius: 10px;
+          background:
+              radial-gradient(circle at 50% 16%, #fffaf6 0 10%, transparent 11%),
+              linear-gradient(#fffaf6, #fffaf6) 50% 28% / 34px 6px no-repeat,
+              linear-gradient(#a85a28, #a85a28) 16% 40% / 20px 34px no-repeat,
+              linear-gradient(#a85a28, #a85a28) 84% 40% / 20px 34px no-repeat,
+              linear-gradient(#e0a06a, #e0a06a) 50% 78% / 58px 78px no-repeat,
+              #f8efe6;
+          flex: none;
+      }
+      .tienda-copy { padding-top: 8px; }
+      .tienda-copy small { display: block; letter-spacing: 0.16em; font-size: 8px; color: #f8efe6; text-transform: uppercase; }
+      .tienda-copy strong { display: block; margin: 6px 0 4px; font-size: 18px; letter-spacing: -0.4px; color: #fffaf6; }
+      .tienda-copy em { font-style: normal; font-size: 12px; color: #f8efe6; }
+      .tienda-copy b {
+          display: inline-block;
+          margin-top: 10px;
+          background: #fffaf6;
+          color: #c56a32;
+          border-radius: 99px;
+          padding: 5px 10px;
+          font-size: 10px;
+      }
+      .tienda-fila { display: flex; gap: 8px; padding: 12px; }
+      .mini {
+          flex: 1;
+          height: 46px;
+          border-radius: 8px;
+          background: #e0a06a;
+      }
+      .mini:nth-child(2) { background: #f8efe6; }
+      .mini:nth-child(3) { background: #a85a28; }
+      .phone .tienda-top { padding: 14px 8px 8px; font-size: 9px; }
+      .phone .tienda-hero { flex-direction: column; padding: 0 8px; gap: 8px; }
+      .phone .prenda::after {
+          content: "S";
+          position: absolute;
+          left: 8px;
+          bottom: 8px;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background: #fffaf6;
+          color: #c56a32;
+          font-size: 12px;
+          font-weight: 800;
+          line-height: 22px;
+          text-align: center;
+      }
+      .phone .tienda-copy strong { font-size: 14px; }
+      .phone .tienda-fila { display: none; }
 
       .services-container, .quienes-somos-container, .proceso-container { max-width: 1360px; width: 100%; }
       .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
-      .servicios-ui { display: grid; grid-template-columns: 280px 1fr; gap: 22px; align-items: stretch; }
-      .servicios-lista { position: relative; display: flex; flex-direction: column; gap: 10px; padding-left: 22px; }
-      .servicio-tab { position: relative; transition: border-color 0.8s ease, background 0.8s ease; }
-      .servicio-tab {
-          text-align: left;
-          padding: 18px 18px;
-          border-radius: 14px;
-          border: 1px solid #e3e8ee;
-          background: #eef2f6;
-          color: #04101f;
-          font: inherit;
-          font-size: 1.12rem;
-          font-weight: 650;
-          cursor: pointer;
+      .servicios-cabeza {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          gap: 36px;
+          width: 100%;
+          margin-bottom: 22px;
       }
-      .servicio-tab span { display: block; margin-bottom: 4px; color: #c56a32; font-size: 0.78rem; letter-spacing: 0.6px; }
-      .servicio-tab.is-active { border-color: #04101f; }
-      .servicio-tab.is-active span { color: #e4b184; }
-      .servicio-panel { padding: 40px 36px; min-height: 240px; }
-      .servicio-panel h3 { margin: 0 0 14px; font-size: 2rem; color: #04101f; }
-      .servicio-panel p { margin: 0; font-size: 1.2rem; line-height: 1.65; color: #04101f; }
+      .servicios-cabeza .section-title,
+      .servicios-cabeza .section-subtitle { text-align: left; margin: 0; }
+      .servicios-cabeza .section-subtitle { max-width: 420px; }
+      .servicios-bento {
+          display: grid;
+          grid-template-columns: 1.25fr 1fr;
+          grid-template-rows: 1fr 1fr;
+          gap: 16px;
+          width: 100%;
+      }
+      .servicio-card {
+          position: relative;
+          isolation: isolate;
+          overflow: hidden;
+          background: #ffffff;
+          border: 1px solid #e3e8ee;
+          border-radius: 18px;
+          padding: 28px 26px;
+          box-sizing: border-box;
+          cursor: pointer;
+          font: inherit;
+          width: 100%;
+          appearance: none;
+          text-align: left;
+          transition: border-color 1.35s ease, box-shadow 1.35s ease;
+      }
+      .servicio-card::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: #04101f;
+          opacity: 0;
+          transition: opacity 0.7s ease;
+          pointer-events: none;
+      }
+      .servicio-card.is-activa::before {
+          opacity: 1;
+          transition: opacity 1.7s cubic-bezier(0.45, 0.02, 0.2, 1) 0.25s;
+      }
+      .servicio-card > * { position: relative; z-index: 1; }
+      .servicio-card:hover { border-color: #04101f; box-shadow: 0 10px 24px rgba(4, 16, 31, 0.08); }
+      .servicio-card.is-activa:hover { box-shadow: none; }
+      .servicio-card:focus-visible { outline: 2px solid #c56a32; outline-offset: 3px; }
+      .servicio-card.is-activa {
+          grid-column: 1;
+          grid-row: 1 / span 2;
+          z-index: 2;
+          background: transparent;
+          border-color: #04101f;
+          color: #f6f4f1;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          min-height: 320px;
+          box-shadow: none;
+      }
+      .servicio-card.es-siguiente { grid-column: 2; grid-row: 2; z-index: 3; }
+      .servicio-card.es-espera { grid-column: 2; grid-row: 1; z-index: 1; }
+      .servicio-num { display: block; color: #c56a32; font-weight: 750; letter-spacing: 0.6px; font-size: 0.95rem; }
+      .servicio-card h3 { margin: 10px 0 8px; font-size: 1.45rem; color: #04101f; transition: color 0.9s ease 0.15s, font-size 1.35s cubic-bezier(0.4, 0, 0.2, 1); }
+      .servicio-card p { margin: 0; font-size: 1.12rem; line-height: 1.55; color: #04101f; transition: color 0.9s ease 0.55s; }
+      .servicio-card.is-activa h3 { color: #f6f4f1; font-size: 1.9rem; transition-delay: 1.05s, 0s; }
+      .servicio-card.is-activa p { color: #d5e2ee; max-width: 460px; transition-delay: 1.15s; }
+      .servicios-cierre {
+          display: flex;
+          justify-content: flex-end;
+          width: 100%;
+          margin-top: 18px;
+      }
       .service-card { padding: 36px 32px; }
       .service-card h3 { color: #04101f; margin: 0 0 12px; font-size: 1.5rem; }
       .service-card p { margin: 0; font-size: 1.15rem; color: #04101f; line-height: 1.6; }
@@ -264,7 +484,53 @@
       .quienes-somos-content { display: flex; gap: 48px; align-items: center; }
       .quienes-somos-text { flex: 1.5; }
       .quienes-somos-text p { color: #04101f; font-size: 1.22rem; line-height: 1.55; margin: 0 0 10px; }
-      .quienes-somos-stats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .quienes-somos-stats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+      #quienes-somos .stat.plano {
+          background: rgba(246, 244, 241, 0.04);
+          border: 1px solid rgba(246, 244, 241, 0.12);
+          border-radius: 16px;
+          padding: 22px 16px;
+      }
+      #quienes-somos .stat-label { color: #d5e2ee; }
+      .equipo-fotos {
+          flex: 1.15;
+          align-self: stretch;
+          position: relative;
+          overflow: hidden;
+          min-height: 460px;
+          border-radius: 18px;
+          border: 1px solid rgba(197, 106, 50, 0.4);
+          background:
+              radial-gradient(120% 90% at 18% 0%, rgba(197, 106, 50, 0.22), transparent 48%),
+              #07182c;
+      }
+      .equipo-pista {
+          display: flex;
+          width: 100%;
+          height: 100%;
+          min-width: 0;
+          min-height: 460px;
+      }
+      .equipo-marco {
+          position: relative;
+          flex: 0 0 100%;
+          width: 100%;
+          min-width: 100%;
+          min-height: 460px;
+          margin: 0;
+          overflow: hidden;
+          background: transparent;
+      }
+      .equipo-marco img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+      .equipo-marco figcaption {
+          position: absolute;
+          left: 18px;
+          bottom: 16px;
+          color: rgba(246, 244, 241, 0.72);
+          font-size: 0.9rem;
+          letter-spacing: 0.2px;
+      }
+      .equipo-marco:has(img) figcaption { display: none; }
       .stat { padding: 28px 18px; text-align: center; }
       .stat-number { display: block; font-size: 2.3rem; font-weight: 750; color: #c56a32; margin-bottom: 8px; line-height: 1; }
       .stat-label { color: #04101f; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -272,7 +538,7 @@
       .pasos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; width: 100%; }
       .paso { padding: 28px 22px; }
       .paso-num { color: #c56a32; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.7px; }
-      .paso h3 { color: #04101f; margin: 10px 0; font-size: 1.28rem; }
+      .paso h3 { color: #04101f; margin: 10px 0; font-size: 1.12rem; }
       .paso p { margin: 0; color: #04101f; font-size: 1.08rem; line-height: 1.55; }
 
       .contacto-container { max-width: 1360px; width: 100%; display: flex; gap: 56px; align-items: center; }
@@ -369,6 +635,8 @@
       }
       @media (max-width: 760px) {
           .navbar { height: auto; min-height: 84px; padding: 14px 16px; flex-wrap: wrap; }
+          .logo { font-size: 2.15rem; gap: 4px; }
+          .logo img { height: 46px; }
           .nav-toggle { display: block; }
           .pie { padding: 32px 16px 24px; }
           .pie-inner { flex-direction: column; gap: 22px; }
@@ -382,16 +650,20 @@
           .links a { margin: 0; padding: 14px 4px; font-size: 1.15rem; }
           .links a.nav-contacto { display: inline-block; width: fit-content; margin: 8px 0 4px; padding: 12px 18px; }
           section { min-height: 0; padding: 140px 16px 120px; }
-          #inicio { min-height: 0; padding: 88px 16px 120px; }
-          .section-title { font-size: 2.15rem; }
-          .section-subtitle { font-size: 1.08rem; margin-bottom: 22px; }
-          .hero-container, .quienes-somos-content, .contacto-container, .servicios-ui { flex-direction: column; align-items: stretch; gap: 22px; }
-          .servicios-ui { display: flex; }
-          .chat-mockup { max-width: none; padding: 18px; }
-          .chat-bubble.left { margin-right: 18px; }
-          .chat-bubble.right { margin-left: 18px; }
+          #inicio { min-height: 0; padding: 115px 16px 164px; }
+          .section-title { font-size: 1.9rem; }
+          .section-subtitle { font-size: 1rem; margin-bottom: 22px; }
+          .hero-container, .quienes-somos-content, .contacto-container { flex-direction: column; align-items: stretch; gap: 22px; }
+          .hero-devices { max-width: none; min-height: 0; margin: 0; display: block; }
+          .hero-devices-escena { width: 100%; height: 360px; }
+          .laptop { max-width: none; }
+          .laptop-screen { height: 220px; }
+          .phone { width: 132px; height: 250px; }
+          .servicios-cabeza, .servicios-bento, .servicios-cierre { display: flex; flex-direction: column; align-items: stretch; gap: 16px; }
+          .servicios-cabeza .section-title, .servicios-cabeza .section-subtitle { text-align: center; }
           .buttons .btn, .btn-whatsapp { width: 100%; box-sizing: border-box; text-align: center; }
           .pasos, .quienes-somos-stats { grid-template-columns: 1fr; }
+          .equipo-fotos, .equipo-pista, .equipo-marco { width: 100%; min-height: 280px; }
           .contacto-info .section-title,
           .contacto-info .section-subtitle { text-align: center; }
           .opciones-contacto { align-items: stretch; }
@@ -402,7 +674,7 @@
 <body>
 
     <nav class="navbar">
-        <a href="#inicio" class="logo">&lt;&gt; NyN Solutions</a>
+        <a href="#inicio" class="logo"><img src="img/logo-sinter.png" alt="">sinter</a>
         <button type="button" class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
@@ -422,18 +694,46 @@
                 <h1>Software que hace <span class="highlight">crecer</span> tu negocio.</h1>
                 <p class="hero-text">Diseñamos y desarrollamos páginas web, tiendas online y sistemas a medida. Trabajás directo con el equipo que construye tu proyecto, de principio a fin, sin intermediarios.</p>
                 <div class="buttons">
-                    <a href="#contacto" class="btn btn-primary">Pedí tu presupuesto</a>
+                    <a href="#contacto" class="btn btn-primary">Hablemos</a>
                     <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
                 </div>
             </div>
-            <div class="chat-mockup">
-                <div class="chat-header">
-                    <span class="dot"></span> Así empieza tu proyecto
+            <div class="hero-devices" aria-hidden="true">
+                <div class="hero-devices-escena">
+                <div class="laptop">
+                    <div class="laptop-lid">
+                        <div class="laptop-screen">
+                            <div class="catalogo">
+                                <div class="catalogo-top">tu tienda <span>Ropa · Nueva · Sale</span></div>
+                                <div class="catalogo-grid">
+                                    <div class="pieza tono-1"><i></i><b>Camisa</b><em>$ 32.000</em></div>
+                                    <div class="pieza tono-2"><i></i><b>Remera</b><em>$ 18.000</em></div>
+                                    <div class="pieza tono-3"><i></i><b>Pantalón</b><em>$ 41.000</em></div>
+                                    <div class="pieza tono-4"><i></i><b>Buzo</b><em>$ 36.000</em></div>
+                                    <div class="pieza tono-5"><i></i><b>Campera</b><em>$ 54.000</em></div>
+                                    <div class="pieza tono-6"><i></i><b>Vestido</b><em>$ 45.000</em></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="laptop-chin"></div>
                 </div>
-                <div class="chat-bubble left">Hola, tengo un emprendimiento y necesito una web profesional. ¿Cómo trabajan?</div>
-                <div class="chat-bubble right">¡Hola! Contanos: ¿buscás una web institucional o querés vender online?</div>
-                <div class="chat-bubble left">Quiero vender online y que sea fácil de administrar para mi equipo.</div>
-                <div class="chat-bubble right">Perfecto. Te armamos una propuesta a medida con tiempos y costos cerrados.</div>
+                <div class="phone">
+                    <div class="phone-screen">
+                        <div class="tienda">
+                            <div class="tienda-top">tu tienda</div>
+                            <div class="tienda-hero">
+                                <div class="prenda"></div>
+                                <div class="tienda-copy">
+                                    <small>Nueva colección</small>
+                                    <strong>Camisa azul</strong>
+                                    <em>Colección marina</em>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
         <div class="inicio-corte" aria-hidden="true"></div>
@@ -441,18 +741,25 @@
 
     <section id="servicios" class="bg-alt">
         <div class="services-container">
-            <h2 class="section-title">Qué <span class="highlight">hacemos</span></h2>
-            <p class="section-subtitle" style="margin: 0 auto 16px auto;">Soluciones tecnológicas modernas, rápidas y pensadas para escalar con tu negocio.</p>
-            <div class="servicios-ui">
-                <div class="servicios-lista" role="tablist" aria-label="Servicios">
-                    <button type="button" class="servicio-tab is-active" role="tab" aria-selected="true" data-servicio="web"><span>01</span>Desarrollo Web</button>
-                    <button type="button" class="servicio-tab" role="tab" aria-selected="false" data-servicio="tienda"><span>02</span>E-Commerce</button>
-                    <button type="button" class="servicio-tab" role="tab" aria-selected="false" data-servicio="software"><span>03</span>Software a Medida</button>
-                </div>
-                <div class="servicio-panel plano" aria-live="polite">
-                    <h3 id="servicio-titulo">Desarrollo Web</h3>
-                    <p id="servicio-texto">Landing pages y sitios institucionales ultra rápidos, optimizados para Google y adaptados a cualquier celular o pantalla.</p>
-                </div>
+            <div class="servicios-cabeza">
+                <h2 class="section-title">Qué <span class="highlight">hacemos</span></h2>
+            </div>
+            <div class="servicios-bento">
+                <button type="button" class="servicio-card is-activa" aria-pressed="true">
+                    <span class="servicio-num">01</span>
+                    <h3>Desarrollo Web</h3>
+                    <p>Landing pages y sitios institucionales ultra rápidos, optimizados para Google y adaptados a cualquier celular o pantalla.</p>
+                </button>
+                <button type="button" class="servicio-card" aria-pressed="false">
+                    <span class="servicio-num">02</span>
+                    <h3>E-Commerce</h3>
+                    <p>Tiendas online completas, seguras y fáciles de autogestionar para que empieces a vender las 24 horas sin fricciones.</p>
+                </button>
+                <button type="button" class="servicio-card" aria-pressed="false">
+                    <span class="servicio-num">03</span>
+                    <h3>Software a Medida</h3>
+                    <p>Sistemas internos, automatizaciones y herramientas de gestión diseñadas exactamente para los procesos de tu empresa.</p>
+                </button>
             </div>
         </div>
     </section>
@@ -465,19 +772,39 @@
                 <div class="quienes-somos-text">
                     <p>Somos desarrolladores apasionados por crear tecnología que funcione perfecto y se vea increíble. No usamos plantillas aburridas ni soluciones genéricas; escribimos código a medida porque creemos que cada negocio tiene necesidades únicas.</p>
                     <p>Nos enfocamos en la transparencia, la comunicación directa y en entregar proyectos que realmente aporten valor. Nuestro objetivo no es solo entregarte una web, sino un activo digital que te ayude a vender más y mejor.</p>
+                    <div class="quienes-somos-stats">
+                        <div class="stat plano">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Código a medida</span>
+                        </div>
+                        <div class="stat plano">
+                            <span class="stat-number">24h</span>
+                            <span class="stat-label">Respuesta</span>
+                        </div>
+                        <div class="stat plano" style="grid-column: span 2;">
+                            <span class="stat-number">+ Eficiencia</span>
+                            <span class="stat-label">En tus procesos</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="quienes-somos-stats">
-                    <div class="stat plano">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Código a medida</span>
-                    </div>
-                    <div class="stat plano">
-                        <span class="stat-number">24h</span>
-                        <span class="stat-label">Respuesta</span>
-                    </div>
-                    <div class="stat plano" style="grid-column: span 2;">
-                        <span class="stat-number">+ Eficiencia</span>
-                        <span class="stat-label">En tus procesos</span>
+                <div class="equipo-fotos">
+                    <div class="equipo-pista">
+                        <figure class="equipo-marco">
+                            <img src="img/equipo.jpg" alt="El equipo de sinter" onerror="this.remove()">
+                            <figcaption>Foto del grupo</figcaption>
+                        </figure>
+                        <figure class="equipo-marco">
+                            <img src="img/nosotros-1.jpg" alt="sinter" onerror="this.remove()">
+                            <figcaption>Foto</figcaption>
+                        </figure>
+                        <figure class="equipo-marco">
+                            <img src="img/nosotros-2.jpg" alt="sinter" onerror="this.remove()">
+                            <figcaption>Foto</figcaption>
+                        </figure>
+                        <figure class="equipo-marco" aria-hidden="true">
+                            <img src="img/equipo.jpg" alt="" onerror="this.remove()">
+                            <figcaption>Foto del grupo</figcaption>
+                        </figure>
                     </div>
                 </div>
             </div>
@@ -548,7 +875,7 @@
         <div class="corte-arriba" aria-hidden="true"></div>
         <div class="pie-inner">
             <div>
-                <p class="pie-marca">&lt;&gt; NyN Solutions</p>
+                <p class="pie-marca">sinter</p>
                 <p>Desarrollo web, tiendas online y software a medida. Trabajás directo con el equipo que construye tu proyecto.</p>
             </div>
             <nav class="pie-links" aria-label="Pie de página">
@@ -559,7 +886,7 @@
                 <a href="https://wa.me/542494371168" target="_blank" rel="noopener">WhatsApp +54 249 437-1168</a>
             </nav>
         </div>
-        <p class="pie-copy">NyN Solutions. Páginas web, tiendas y sistemas a medida.</p>
+        <p class="pie-copy">sinter. Páginas web, tiendas y sistemas a medida.</p>
     </footer>
 
     <a class="wa-flotante" href="https://wa.me/542494371168" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
@@ -676,71 +1003,73 @@
           });
         }
 
-        var textos = {
-          web: ["Desarrollo Web", "Landing pages y sitios institucionales ultra rápidos, optimizados para Google y adaptados a cualquier celular o pantalla."],
-          tienda: ["E-Commerce", "Tiendas online completas, seguras y fáciles de autogestionar para que empieces a vender las 24 horas sin fricciones."],
-          software: ["Software a Medida", "Sistemas internos, automatizaciones y herramientas de gestión diseñadas exactamente para los procesos de tu empresa."]
-        };
-        var tituloServicio = document.getElementById("servicio-titulo");
-        var textoServicio = document.getElementById("servicio-texto");
-        var tabs = Array.prototype.slice.call(document.querySelectorAll(".servicio-tab"));
-        var indice = 0;
-        var andando = false;
-        var llegada = null;
-
-        function marcar(i) {
-          var tab = tabs[i];
-          var dato = textos[tab.getAttribute("data-servicio")];
-          tabs.forEach(function (otro) {
-            otro.classList.remove("is-active");
-            otro.setAttribute("aria-selected", "false");
+        var tarjetas = Array.prototype.slice.call(document.querySelectorAll(".servicio-card"));
+        function elegirTarjeta(card) {
+          var antes = tarjetas.map(function (t) { return t.getBoundingClientRect(); });
+          var indice = tarjetas.indexOf(card);
+          tarjetas.forEach(function (otra, i) {
+            otra.classList.remove("is-activa", "es-siguiente", "es-espera");
+            otra.setAttribute("aria-pressed", "false");
+            if (i === indice) {
+              otra.classList.add("is-activa");
+              otra.setAttribute("aria-pressed", "true");
+            } else if (i === (indice + 1) % tarjetas.length) {
+              otra.classList.add("es-siguiente");
+            } else {
+              otra.classList.add("es-espera");
+            }
           });
-          tab.classList.add("is-active");
-          tab.setAttribute("aria-selected", "true");
-          tituloServicio.textContent = dato[0];
-          textoServicio.textContent = dato[1];
+          tarjetas.forEach(function (t, i) {
+            var ahora = t.getBoundingClientRect();
+            var dx = antes[i].left - ahora.left;
+            var dy = antes[i].top - ahora.top;
+            var sx = antes[i].width / Math.max(ahora.width, 1);
+            var sy = antes[i].height / Math.max(ahora.height, 1);
+            if (Math.abs(dx) < 1 && Math.abs(dy) < 1 && Math.abs(sx - 1) < 0.02) return;
+            t.style.transformOrigin = "top left";
+            t.style.transition = "none";
+            t.style.transform = "translate(" + dx + "px," + dy + "px) scale(" + sx + "," + sy + ")";
+            t.offsetHeight;
+            t.style.transition = "transform 1.35s cubic-bezier(0.4, 0, 0.2, 1)";
+            t.style.transform = "none";
+          });
         }
-
-        function completar(i) {
-          indice = i;
-          marcar(i);
-          clearTimeout(llegada);
-          llegada = setTimeout(function () {
-            if (andando) completar((i + 1) % tabs.length);
-          }, 8000);
+        elegirTarjeta(tarjetas[0]);
+        var rotacion = null;
+        function programarRotacion(espera) {
+          clearTimeout(rotacion);
+          rotacion = setTimeout(function () {
+            var actual = tarjetas.findIndex(function (card) { return card.classList.contains("is-activa"); });
+            elegirTarjeta(tarjetas[(actual + 1) % tarjetas.length]);
+            programarRotacion(9000);
+          }, espera);
         }
-
-        function arrancar(desde) {
-          andando = true;
-          completar(desde);
-        }
-
-        tabs.forEach(function (tab, i) {
-          tab.addEventListener("click", function () {
-            andando = false;
-            clearTimeout(llegada);
-            tabs.forEach(function (otro) { otro.classList.remove("girando"); });
-            marcar(i);
-            clearTimeout(pausa);
-            pausa = setTimeout(function () { arrancar(i); }, 60000);
+        var rotaSola = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        tarjetas.forEach(function (card) {
+          card.addEventListener("click", function () {
+            elegirTarjeta(card);
+            if (rotaSola) programarRotacion(15000);
           });
         });
+        if (rotaSola) programarRotacion(9000);
 
-        var pausa = null;
-        window.addEventListener("scroll", function () {
-          var rect = document.getElementById("servicios").getBoundingClientRect();
-          if (rect.bottom < navHeight() || rect.top > window.innerHeight) {
-            clearTimeout(pausa);
-            pausa = null;
-            andando = false;
-            clearTimeout(llegada);
-            marcar(0);
-            arrancar(0);
-          }
-        }, { passive: true });
-
-        marcar(0);
-        setTimeout(function () { arrancar(0); }, 600);
+        var pista = document.querySelector(".equipo-pista");
+        if (pista && rotaSola) {
+          var foto = 0;
+          var fotos = pista.children.length - 1;
+          setInterval(function () {
+            foto += 1;
+            pista.style.transition = "transform 0.9s cubic-bezier(0.4, 0, 0.2, 1)";
+            pista.style.transform = "translateX(-" + (foto * 100) + "%)";
+            if (foto >= fotos) {
+              setTimeout(function () {
+                pista.style.transition = "none";
+                foto = 0;
+                pista.style.transform = "translateX(0)";
+              }, 950);
+            }
+          }, 6000);
+        }
 
         window.addEventListener("scroll", actualizarIndiceInicio, { passive: true });
         window.addEventListener("scroll", actualizarWhatsapp, { passive: true });
